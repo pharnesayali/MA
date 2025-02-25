@@ -1,0 +1,225 @@
+<ngx-spinner bdOpacity="0.9" bdColor="rgba(51,51,51,0.91)" size="default" color="#fff" type="ball-fussion"
+  [fullScreen]="true">
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+<ng-template #popTemplate>
+</ng-template>
+<app-notifier></app-notifier>
+<div class="header-bottom-admin">
+  <div class="row margin-left-0 margin-right-0 justify-content-between">
+    <div class="col-xl-3 col-lg-3 padding-left-10">
+      <app-breadcrumb></app-breadcrumb>
+    </div>
+    <div class="col-xl-9 col-lg-9">
+      <div class="row justify-content-end align-items-center">
+        <div class="col-lg-3 col-xl-3" style="margin-top: -3px;">
+        </div>
+        <div class="px-3" style="margin-top: 1px;" *ngIf="currentUser.RoleCode === 'Admin'">
+          <button type="button" class="btn-import hover-btn-icon btn-blue-header common-btn" (click)="showImport()">
+            <img id="icon" src="assets/images/import-icon.svg" class="normal-icon" alt="import" />
+            <img id="icon" src="assets/images/hover-import-icon.svg" class="hover-icon" alt="import" />
+            &nbsp;
+            <span>Import</span>
+          </button>
+          <div class="box-import box-modal-common">
+            <div class="box-header">
+              <div class="row">
+                <div class="col-xl-10 col-lg-10">
+                  <div class="title-import">Import Item Supplier Master File</div>
+                </div>
+                <div class="col-xl-2 col-lg-2">
+                  <div class="text-right">
+                    <button type="button" class="btn-close-import common-btn" (click)="hideImport()">
+                      <i class="fas fa-times text-white"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="box-container">
+              <div class="form-group form-group-import" style="margin-bottom: 0px !important;">
+                <label>Browse file from local drive</label>
+                <form #uploadForm="ngForm">
+                  <div class="row margin-left-0 margin-right-0">
+                    <div class="col-xl-9 col-lg-9 padding-left-0" [ngClass]="{ import_paceholder: !isFileSelected }">
+                      <input type="text" class="form-control import-upload-input" name="filename" #fileName="ngModel"
+                        [(ngModel)]="filename1" [ngStyle]="{
+                      background:
+                        isFileSelected === true ? '#d2dae5' : '#ffe1e1 '
+                    }" [placeholder]="
+                      !isFileSelected ? 'Please select the file' : 'Please select only .xlsx file'
+                    " disabled />
+                    </div>
+                    <div class="col-xl-3 col-lg-3 padding-left-0 upload-btn-wrapper">
+                      <button type="button" class="primary-btn btn-upload-file common-btn" style="background:#726f6f ;">
+                        <i class="fas fa-folder-open mr-1 fa-lg"></i>
+                        Browse
+                      </button>
+                      <input type="file" name="myfile" #myfile (change)="fileChange($event)" accept=".xlsx"
+                        title="{{filename1}}" />
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <br />
+                  <div class="row margin-left-0 margin-right-0">
+                    <div class="col-xl-9 col-lg-9 padding-left-0 upload-btn-wrapper">
+                    </div>
+                    <div class="col-xl-3 col-lg-3" style="padding-left:0px !important">
+                      <button type="button" class="primary-btn btn-upload-file common-btn"
+                        style="padding-left:0px !important" (click)="UploadFile()" [ngClass]="{disabled: !isxlsx}"
+                        [disabled]="!isxlsx" [title]="!isxlsx ? 'Please upload only .xlsx file' : ''">
+                        <img src="assets/images/upload-file-icon.svg" class="margin-right-5" />
+                        Upload File
+                      </button>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="note-line">
+                    Note:
+                    <a href="assets/EmptyTemplet/Plant_supplier_master.xlsx" download="Plant_supplier_master.xlsx"
+                      class="pointer text-info">Click here</a>
+                    to download template
+                  </div>
+                </form>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="form-group form-group-import" style="margin-bottom: 0 !important;">
+                  <label style="margin-left: 14px; font-size:16px;">
+                    Import Summary
+                  </label>
+                </div>
+                <!-- ag-grid for the import files-->
+                <ag-grid-angular
+                  style="overflow: hidden; flex-grow: 1; height: calc(100vh - 400px); margin-left: 14px !important; margin-right: 10px !important;"
+                  id="itemMasterImportDocx" class="ag-theme-balham  m-0  w-100" [columnDefs]="importColumnDef"
+                  [defaultColDef]="importdefaultColDef" [animateRows]="true" [headerHeight]="headerHeight"
+                  [enableRangeSelection]="true" [rowSelection]="rowSelection" (gridReady)="onImportGridReady($event)"
+                  [suppressContextMenu]="true" [rowData]="itemSupplierMasterImport" [floatingFilter]="true"
+                  [rowGroupPanelShow]="rowGroupPanelShow" [suppressDragLeaveHidesColumns]="true"
+                  [frameworkComponents]="importFrameworkComponents">
+                </ag-grid-angular>
+              </div>
+            </div>
+
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <button type="btn" style="border: 0; background-color: #ff5050 ;margin-top: 7px" (click)="getData()">
+          <i class="fas fa-info-circle icon-color" ng-reflect-ng-style="[object Object]"
+            style="color: rgb(255, 255, 255); font-size: 18px;"></i>
+        </button> &nbsp;
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align: right; margin-right:10px; color:#ff5050; font-size: 13px; font-weight: bold;">
+  Last Updated Date :{{updatedDate | date: "dd/MM/yyyy HH:mm"}}
+</div>
+<hr>
+
+<!-- ag- grid for the item supplier  -->
+<div style="margin-top:10px; margin-left: 5px; overflow: hidden; flex-grow: 1;  height: calc(100vh - 195px); ">
+  <ag-grid-angular style="width:100%; " id="itemSupplierGrid" class="ag-theme-balham  m-0  w-100" [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef" [context]="context" [animateRows]="true" [headerHeight]="headerHeight"
+    [enableRangeSelection]="true" [rowSelection]="rowSelection" (gridReady)="onGridReady($event)"
+    [suppressContextMenu]="true" [rowData]="itemSupplierData" [floatingFilter]="true"
+    [rowGroupPanelShow]="rowGroupPanelShow" [pagination]="true" [paginationPageSize]="paginationPageSize"
+    [suppressDragLeaveHidesColumns]="true" (cellValueChanged)="onCellValueChanged($event)" [gridOptions]="gridOptions">
+  </ag-grid-angular>
+</div>
+
+<!-- footer buttons -->
+<footer style="margin-top: 5px;">
+  <div class="fixed-blue-strip-vendor">
+    <div class="right-float">
+      <button type="button" ng-class="{'disabled': disablebutton === false}" [disabled]="sobChangeList.length === 0"
+        class="btn-user-update primary-btn common-btn margin-right-5" (click)="apply()">
+        <img src="assets/images/accept-icon.svg" alt="" />
+        <span>Apply </span>
+      </button>
+      <button type="button" class="btn-cancel btn-cancel-all btn-dim-action common-btn" (click)="cancel()">
+        <img src="assets/images/dim-cancel-icon.svg" alt="" />
+        <span>Cancel</span>
+      </button>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</footer>
+
+<!-- modal for the data update summary-->
+<div id="last-updated-item-supplier-data" class="item-master box-loaded-data box-modal-common dataSummary" tabindex="-1"
+ role="dialog" aria-labelledby="dialog-child-name">
+  <div class="box-header">
+    <div class="row">
+      <div class="col-xl-10 col-lg-10">
+        <div class="title-import text-left">
+          Data Update Summary
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-2">
+        <div class="text-right">
+          <button type="button" class="btn-close-import common-btn" (click)="closeModal()">
+            <img src="assets/images/cancel-btn-icon.svg" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr class="sticky-header">
+        <th class="text-align-left">File Type</th>
+        <th class="text-align-left">Last Uploaded Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of fileUploadedList ; let i = index;">
+        <td>{{file.FileType}}</td>
+        <td>{{file.Date | date: 'dd/MM/yyyy hh:mm'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- confirmation box for the change SOB -->
+<div id="change-sob" class="item-supplier-SOB box-loaded-data box-modal-common" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-child-name">
+  <div class="box-header">
+    <div class="row">
+      <div class="col-xl-10 col-lg-10">
+        <div class="title-import text-left">
+          Change SOB
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-2">
+        <div class="text-right">
+          <button type="button" class="btn-close-import common-btn" (click)="closeSobModal()">
+            <img src="assets/images/cancel-btn-icon.svg" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="add-document">
+      <div class="row">
+        <div class="col-lg-12 content-center-alert text-center">
+          Are you sure want to change the SOB?
+          <br>
+          <button type="button" class="btn-pwd-confirm primary-btn common-btn mt-3" style="margin-right: 10px;"
+            (click)="changeSob()">
+            <img src="assets/images/save-btn-icon.svg" class="margin-right-6 " />
+            Change SOB
+          </button>
+          <button type="button" class="btn-pwd-cancel secondary-btn common-btn" (click)="closeSobModal()">
+            <img src="assets/images/cancel-btn-icon.svg" class="margin-right-5" />
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

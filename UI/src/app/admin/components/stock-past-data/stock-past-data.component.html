@@ -1,0 +1,129 @@
+<div class="header-bottom-admin">
+    <div class="row margin-left-0 margin-right-0 justify-content-between">
+        <div class="col-xl-3 col-lg-3 padding-left-10">
+            <app-breadcrumb></app-breadcrumb>
+        </div>
+
+        <div class="col-xl-9 col-lg-9">
+
+            <div class="row justify-content-end align-items-center">
+                <button type="btn" style="border: 0; background-color: #ff5050; margin-top: 7px;" (click)="getData()">
+                    <i class="fas fa-info-circle icon-color" ng-reflect-ng-style="[object Object]"
+                        style="color: rgb(255, 255, 255); font-size: 18px;"></i>
+                </button> &nbsp;
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div style="text-align: right; margin-right:10px; margin-top:3px; color:#ff5050; font-size: 13px; font-weight: bold;">
+    Last Updated Date :{{updatedDate | date: "dd/MM/yyyy HH:mm"}}
+  </div> -->
+
+<div id="last-updated-order-generation-data" class="stock box-loaded-data box-modal-common dataSummary" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-child-name">
+    <div class="box-header">
+        <div class="row">
+            <div class="col-xl-10 col-lg-10">
+                <div class="title-import text-left">
+                    Data Update Summary
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-2">
+                <div class="text-right">
+                    <button type="button" class="btn-close-import common-btn" (click)="closeModal()">
+                        <img src="assets/images/cancel-btn-icon.svg" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="sticky-header">
+                <th class="text-align-left">File Type</th>
+                <th class="text-align-left">Last Uploaded Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let file of fileUploadedList ; let i = index;">
+                <td>{{file.FileType}}</td>
+                <td>{{file.Date | date: 'dd/MM/yyyy hh:mm'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+    <div class="row mt-3">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+            <div class="form-group custom-blue-input  ">
+                <div class="row">
+                    <div class="col-4 ">
+                        <label
+                            style="font-weight: bold !important ; margin-top: 3px; margin-left: 33% !important; font-size: 14px;">
+                            From Date : </label>
+                    </div>
+                    <div class="col-8" style="padding: 0px;"><input style="background-color: #fff; "
+                            [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" placeholder="Select Date"
+                            class="form-control colorCode" Year="ngModel" [(ngModel)]="fromDate" bsDatepicker
+                            (onShown)="onOpenYearCalendar($event)" placeholder="Select Date" /></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+            <div class="form-group custom-blue-input  ">
+                <div class="row">
+                    <div class="col-xl-4"><label style="margin-top: 5px; font-size: 14px; margin-left: 48% !important;">
+                            To Date
+                            :</label>
+                    </div>
+                    <div class="col-lg-8" style="padding: 0px;">
+                        <input style="background-color: #fff; " [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                            placeholder="Select Date" class="form-control colorCode" Year="ngModel" [(ngModel)]="toDate"
+                            bsDatepicker (onShown)="onOpenYearCalendar($event)" placeholder="Select Date" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 ">
+            <div>
+                <button type="submit" class="btn-link-action btn-update-company-profile primary-btn common-btn"
+                    style="margin-top: 2px;" (click)="apply()">
+                    <b>Search</b></button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="reset"
+                    class="btn-link-action btn-update-company-profile primary-btn common-btn bg-secondary"
+                    (click)="reset()">
+                    Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 ">
+    <div class="row">
+        <div class="col-xl-5 col-lg-5">
+            <div class="form-group custom-blue-input ">
+                <label>Division : </label>
+                <ng-select name="selectZoneId" #selectZoneId="ngModel" [(ngModel)]="selectedMode"
+                    class="customdropDown" [clearable]="true" [items]="selectionList" bindLabel="selectionName"
+                    bindValue="selectionName" [searchable]="true" placeholder="Select Division"
+                    (change)="changeSelection()" multiple="true">
+                </ng-select>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="program-filter">
+    <ag-grid-angular
+        style="overflow: hidden; margin-top: 10px !important; margin-left: 0px !important; height: calc(100vh - 180px); "
+        id="stockPastdata" class="ag-theme-balham  m-0  w-100" [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef" [animateRows]="true" [headerHeight]="headerHeight"
+        [suppressRowClickSelection]=" true" (gridReady)="onGridReady($event)" 
+        [suppressDragLeaveHidesColumns]="true" [suppressContextMenu]="true"
+        [rowData]="stockData" [floatingFilter]="true" [pagination]="true" >
+    </ag-grid-angular>
+</div>

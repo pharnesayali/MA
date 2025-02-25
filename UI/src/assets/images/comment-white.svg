@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+  <defs>
+    <clipPath id="clip-Comment">
+      <rect width="18" height="18"/>
+    </clipPath>
+  </defs>
+  <g id="Comment" clip-path="url(#clip-Comment)">
+    <g id="comment-2" data-name="comment" transform="translate(-2 2.332)">
+      <g id="Group_3" data-name="Group 3" transform="translate(2)">
+        <path id="Path_2270" data-name="Path 2270" d="M15.526-1.332H2.475A2.477,2.477,0,0,0,0,1.143V9.129A2.477,2.477,0,0,0,2.467,11.6v3.624L7.675,11.6h7.851A2.478,2.478,0,0,0,18,9.129V1.143a2.477,2.477,0,0,0-2.475-2.475Zm1.42,10.461a1.422,1.422,0,0,1-1.42,1.42H7.344L3.521,13.21V10.55H2.475a1.422,1.422,0,0,1-1.42-1.42V1.143a1.421,1.421,0,0,1,1.42-1.42h13.05a1.421,1.421,0,0,1,1.42,1.42Zm0,0" fill="#ffffff"/>
+        <path id="Path_2271" data-name="Path 2271" d="M171.293,131.172h8.365v1.055h-8.365Zm0,0" transform="translate(-166.475 -128.777)" fill="#ffffff"/>
+        <path id="Path_2272" data-name="Path 2272" d="M171.293,211.172h8.365v1.055h-8.365Zm0,0" transform="translate(-166.475 -206.527)" fill="#ffffff"/>
+        <path id="Path_2273" data-name="Path 2273" d="M171.293,291.172h8.365v1.055h-8.365Zm0,0" transform="translate(-166.475 -284.277)" fill="#ffffff"/>
+      </g>
+    </g>
+  </g>
+</svg>

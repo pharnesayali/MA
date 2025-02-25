@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-Forecast_Arrow_Hover_Icon">
+      <rect width="20" height="20"/>
+    </clipPath>
+  </defs>
+  <g id="Forecast_Arrow_Hover_Icon" clip-path="url(#clip-Forecast_Arrow_Hover_Icon)">
+    <g id="line-chart" transform="translate(-348 -367)">
+      <rect id="Rectangle_1" data-name="Rectangle 1" width="20" height="20" transform="translate(347.975 366.99)" fill="none"/>
+      <g id="Group_2" data-name="Group 2" transform="translate(51.975 15.99)">
+        <rect id="Rectangle_6" data-name="Rectangle 6" width="20" height="20" transform="translate(298 353)" fill="none"/>
+        <g id="line-chart-2" data-name="line-chart" transform="translate(-43.975 -2.99)">
+          <rect id="Rectangle_5" data-name="Rectangle 5" width="20" height="20" transform="translate(340 354)" fill="none"/>
+          <g id="line-chart-3" data-name="line-chart" transform="translate(336.956 350.911)">
+            <g id="Group_2901" data-name="Group 2901" transform="translate(3.044 3.089)">
+              <path id="Path_2269" data-name="Path 2269" d="M88,88.2l-2.12-3.854L91.823,81.1l-.731,2.521a1.208,1.208,0,0,0,.8,1.458,1.18,1.18,0,0,0,1.458-.8l1.536-5.238a1.1,1.1,0,0,0-.8-1.458l-5.244-1.541a1.176,1.176,0,1,0-.659,2.257l2.522.741-6.973,3.809a1.173,1.173,0,0,0-.471,1.593L85.373,88.3l-9.806,5.357a1.175,1.175,0,1,0,1.124,2.063L87.519,89.8A1.168,1.168,0,0,0,88,88.2Z" transform="translate(-74.954 -75.996)" fill="#232e3e"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

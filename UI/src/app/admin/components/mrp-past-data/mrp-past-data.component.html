@@ -1,0 +1,82 @@
+<ngx-spinner bdOpacity="0.9" bdColor="rgba(51,51,51,0.91)" size="default" color="#fff" type="ball-fussion"
+    [fullScreen]="true">
+    <p style="color: white">Loading...</p>
+</ngx-spinner>
+<app-notifier></app-notifier>
+<div class="header-bottom-admin">
+    <div class="row margin-left-0 margin-right-0 justify-content-between">
+        <div class="col-xl-3 col-lg-3 padding-left-10">
+            <app-breadcrumb></app-breadcrumb>
+        </div>
+
+        <div class="col-xl-9 col-lg-9">
+            <div class="row justify-content-end align-items-center">
+                <div class="col-lg-3 col-xl-3" style="margin-top: -3px;">
+                </div>
+                <button type="btn" style="border: 0; margin-top: 7px; background-color: #ff5050" (click)="getData()">
+                    <i class="fas fa-info-circle icon-color" ng-reflect-ng-style="[object Object]"
+                        style="color: rgb(255, 255, 255); font-size: 18px;"></i>
+                </button> &nbsp;
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div style="text-align: right; margin-right:10px; margin-top:3px; color:#ff5050">
+    Last Updated Date :{{updatedDate | date: "dd/MM/yyyy HH:mm"}}
+</div> -->
+<!-- <hr> -->
+
+<div id="last-updated-mrp-data" class="MRP box-loaded-data box-modal-common dataSummary" tabindex="-1" role="dialog"
+aria-labelledby="dialog-child-name">
+    <div class="box-header">
+        <div class="row">
+            <div class="col-xl-10 col-lg-10">
+                <div class="title-import text-left">
+                    Data Update Summary
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-2">
+                <div class="text-right">
+                    <button type="button" class="btn-close-import common-btn" (click)="closeModal()">
+                        <img src="assets/images/cancel-btn-icon.svg" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="sticky-header">
+                <th class="text-align-left">File Type</th>
+                <th class="text-align-left">Last Uploaded Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let file of fileUploadedList ; let i = index;">
+                <td>{{file.FileType}}</td>
+                <td>{{file.Date | date: 'dd/MM/yyyy hh:mm'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div style="margin-top:10px; margin-left: 10px; width :750px">
+    <ag-grid-angular style="overflow: hidden; flex-grow: 1; height: calc(100vh - 570px); " id="MrpPastDataList"
+        class="ag-theme-balham  m-0  w-100" [columnDefs]="MrpListColumnDef" [defaultColDef]="MrpListdefaultColDef"
+        [animateRows]="true" [headerHeight]="headerHeight" (gridReady)="onMrpListGridReady($event)"
+        [suppressContextMenu]="true" [rowData]="MrpListData" [floatingFilter]="true"
+        [rowGroupPanelShow]="rowGroupPanelShow" (cellClicked)="onCellClicked($event)" [rowSelection]="rowSelection"
+        [enableCellChangeFlash]="true" [suppressDragLeaveHidesColumns]="true">
+    </ag-grid-angular>
+</div>
+
+<div style="margin-top:10px; margin-left: 5px;" *ngIf=" mrpViewClicked">
+    <ag-grid-angular style="overflow: hidden; flex-grow: 1; height: calc(100vh - 260px); " id="mrpPastViewList"
+        class="ag-theme-balham  m-0  w-100" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
+        [context]="context" [animateRows]="true" [headerHeight]="headerHeight" [enableRangeSelection]="true"
+        [rowSelection]="rowSelection" (gridReady)="onGridReady($event)" [suppressContextMenu]="true" [rowData]="MrpData"
+        [floatingFilter]="true" [rowGroupPanelShow]="rowGroupPanelShow" [frameworkComponents]="frameworkComponents"
+        [suppressDragLeaveHidesColumns]="true" [pagination]="true" [paginationPageSize]="paginationPageSize">
+    </ag-grid-angular>
+</div>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-Dimention_And_Segment_Filter">
+      <rect width="20" height="20"/>
+    </clipPath>
+  </defs>
+  <g id="Dimention_And_Segment_Filter" clip-path="url(#clip-Dimention_And_Segment_Filter)">
+    <g id="Group_2" data-name="Group 2" transform="translate(-296 -351)">
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="20" height="20" transform="translate(296 351)" fill="none"/>
+      <path id="path" d="M483.5,144.2h20v2.223h-20Zm3.333,7.777v-2.223h13.333v2.223Zm4.444,5.556V155.31h4.444v2.223Z" transform="translate(-187.5 209.8)" fill="#697c97"/>
+    </g>
+  </g>
+</svg>

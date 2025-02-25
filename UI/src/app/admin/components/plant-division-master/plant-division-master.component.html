@@ -1,0 +1,66 @@
+<ngx-spinner bdOpacity="0.9" bdColor="rgba(51,51,51,0.91)" size="default" color="#fff" type="ball-fussion"
+    [fullScreen]="true">
+    <p style="color: white">Loading...</p>
+</ngx-spinner>
+<app-notifier></app-notifier>
+<div class="header-bottom-admin">
+    <div class="row margin-left-0 margin-right-0 justify-content-between">
+        <div class="col-xl-3 col-lg-3 padding-left-10">
+            <app-breadcrumb></app-breadcrumb>
+        </div>
+
+        <div class="justify-content-end">
+            <button type="btn" style="border: 0; background-color: #ff5050;font-size: 20px;" (click)="getData()">
+                <i class="fas fa-info-circle icon-color" ng-reflect-ng-style="[object Object]"
+                    style="color: rgb(255, 255, 255); font-size: 18px;"></i>
+            </button> &nbsp;
+        </div>
+    </div>
+</div>
+
+<!-- <div style="text-align: right; margin-right:10px; margin-top:3px; color:#ff5050;font-size: 13px; font-weight: bold;">
+    Last Updated Date :{{updatedDate | date: "dd/MM/yyyy HH:mm"}}
+</div> -->
+<hr>
+
+<div id="last-updated-mvm-data" class="GRN box-loaded-data box-modal-common dataSummary" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-child-name">
+    <div class="box-header">
+        <div class="row">
+            <div class="col-xl-10 col-lg-10">
+                <div class="title-import text-left">
+                    Data Update Summary
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-2">
+                <div class="text-right">
+                    <button type="button" class="btn-close-import common-btn" (click)="closeModal()">
+                        <img src="assets/images/cancel-btn-icon.svg" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="sticky-header">
+              <th class="text-align-left">File Type</th>
+              <th class="text-align-left">Last Uploaded Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let file of fileUploadedList ; let i = index;">
+                <td>{{file.FileType}}</td>
+                <td>{{file.Date | date: 'dd/MM/yyyy hh:mm'}}</td>
+            </tr>
+          </tbody>
+    </table>
+</div>
+
+<div style="margin-top:10px;">
+    <ag-grid-angular style="overflow: hidden; height: calc(100vh - 150px);" id="mvmgrid"
+        class="ag-theme-balham  m-0  w-100" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
+        [animateRows]="true" [headerHeight]="headerHeight" (gridReady)="onGridReady($event)"
+        [suppressContextMenu]="true" [rowData]="plantDivisionList" [suppressDragLeaveHidesColumns]="true" [floatingFilter]="true">
+    </ag-grid-angular>
+</div>

@@ -1,0 +1,170 @@
+<ngx-spinner bdOpacity="0.9" bdColor="rgba(51,51,51,0.91)" size="default" color="#fff" type="ball-fussion"
+    [fullScreen]="true">
+    <p style="color: white">Loading...</p>
+</ngx-spinner>
+<app-notifier></app-notifier>
+<div class="header-bottom-admin">
+    <div class="row margin-left-0 margin-right-0 justify-content-between">
+        <div class="col-xl-3 col-lg-3 padding-left-10">
+            <app-breadcrumb></app-breadcrumb>
+        </div>
+        <div class="col-xl-9 col-lg-9">
+
+            <div class="row justify-content-end align-items-center">
+
+
+                <button type="btn" style="border: 0; background-color: #ff5050">
+                </button> &nbsp;
+                <button type="button" class="btn-create-user hover-btn-icon btn-blue-header common-btn margin-right-15"
+                    (click)="generateItr()">
+                    <!-- <img id="icon" src="assets/images/create-user-icon.svg" class="normal-icon" alt="create-user" />
+        <img id="icon" src="assets/images/hover-create-user-icon.svg" class="hover-icon icon"
+          alt="create-user" />&nbsp; -->
+                    <span>Generate ITR</span>
+                </button>
+                <!-- <div class="justify-content-end">
+                  <button type="btn" style="border: 0; background-color: #ff5050;font-size: 20px;" (click)="getData()">
+                      <i class="fas fa-info-circle icon-color" ng-reflect-ng-style="[object Object]" style="color: rgb(255, 255, 255); font-size: 18px;"></i>
+                    </button> &nbsp;
+              </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="col-xl-12 col-lg-12 ">
+    <div class="row">
+        <div class="col-xl-5 col-lg-5" style="margin-top:10px">
+            <div class="row">
+                <div class="col-4" style="padding:0">
+                    <label
+                        style="font-weight: bold !important ; margin-top: 3px; margin-left: 55% !important; font-size: 14px;">Month
+                        : </label>
+                </div>
+                <div class="col-8" style="padding:0">
+                    <ng-select name="selectMonthId" #selectMonthId="ngModel" [(ngModel)]="selectedMonth"
+                        class="customdropDown" [clearable]="true" [items]="monthList" bindLabel="monthName"
+                        bindValue="monthId" [searchable]="true" placeholder="Select Month" (change)="onMonthChange()">
+                    </ng-select>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xl-5 col-lg-5" style="margin-top:10px">
+            <div class="row">
+                <div class="col-4" style="padding:0">
+                    <label
+                        style="font-weight: bold !important ; margin-top: 3px; margin-left: 55% !important; font-size: 14px;">Revision
+                        : </label>
+                </div>
+                <div class="col-8" style="padding:0">
+                    <ng-select name="selectRevisionId" #selectRevisionId="ngModel" [(ngModel)]="selectedRevision"
+                        class="customdropDown" [clearable]="true" [items]="revisionList" bindLabel="revisionId"
+                        bindValue="revisionId" [searchable]="true" placeholder="Select Revision">
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
+
+            <button type="submit" class="btn-link-action btn-update-company-profile primary-btn common-btn "
+                style="margin-top: 10px;" (click)="apply()">
+                Apply</button>
+            &nbsp;&nbsp;
+            <button type="button" class="btn-user-cancel secondary-btn common-btn" (click)="resetData()">
+                <img src="assets/images/dim-cancel-icon.svg" alt="" style="height: 10px;" /> &nbsp;
+                <span>Cancel</span>
+            </button>
+
+        </div>
+
+
+    </div>
+</div> -->
+
+
+
+<!-- <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+    <div class="row mt-3">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+            <div class="form-group custom-blue-input  ">
+                <label> From Date </label><br>
+                <input 
+                style="background-color: #fff;"
+                 [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                  placeholder="Select Date" 
+                  class="form-control colorCode" 
+                  Year="ngModel" 
+                  [(ngModel)]="fromDate" 
+                  bsDatepicker 
+                  (onShown)="onOpenYearCalendar($event)" 
+                  placeholder="Select Date"
+                  />
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+          <div class="form-group custom-blue-input  ">
+              <label> To Date </label><br>
+              <input 
+              style="background-color: #fff;"
+               [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                placeholder="Select Date" 
+                class="form-control colorCode" 
+                Year="ngModel" 
+                [(ngModel)]="toDate" 
+                bsDatepicker 
+                (onShown)="onOpenYearCalendar($event)" 
+                placeholder="Select Date"
+                />
+          </div>
+      </div>
+        <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 ">
+            <div>
+                <button type="submit"
+                    class="btn-link-action btn-update-company-profile primary-btn common-btn"
+                    style="margin-top: 29px;"  (click)="apply()">
+                    <b>Search</b></button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="reset"
+                    class="btn-link-action btn-update-company-profile primary-btn common-btn bg-secondary"
+                    (click)="reset()">
+                    Reset</button>
+            </div>
+        </div>
+    </div>
+  </div> -->
+
+<!-- <div style="margin-top:10px; margin-left: 20px; width :550px">
+    <ag-grid-angular style="overflow: hidden; height: calc(100vh - 585px);" id="itr-list"
+        class="ag-theme-balham  m-0  w-100" [columnDefs]="ITRListColumnDef" [defaultColDef]="defaultColDef"
+        [animateRows]="true" [headerHeight]="headerHeight" (gridReady)="onGridReady($event)"
+        [suppressContextMenu]="true" [rowData]="itrListData" [suppressDragLeaveHidesColumns]="true"
+        [floatingFilter]="true" (cellClicked)="onCellClicked($event)" [pagination]="true"  [paginationAutoPageSize]="true">
+    </ag-grid-angular>
+</div> -->
+
+<div style="margin-top:10px; margin-left: 5px;">
+    <ag-grid-angular style="overflow: hidden; flex-grow: 1; height: calc(100vh - 160px); " id="itr-view"
+        class="ag-theme-balham  m-0  w-100" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
+        [animateRows]="true" [headerHeight]="headerHeight" [enableRangeSelection]="true" [rowSelection]="rowSelection"
+        (gridReady)="onItrViewGridReady($event)" [suppressContextMenu]="true" [rowData]="itrViewData"
+        [floatingFilter]="true" [rowGroupPanelShow]="rowGroupPanelShow" [suppressDragLeaveHidesColumns]="true"
+        (cellValueChanged)="onCellValueChanged($event)">
+    </ag-grid-angular>
+</div>
+
+<footer style="margin-top: 10px;" >
+    <div class="fixed-blue-strip-vendor">
+        <div class="right-float">
+            <button type="button" class="btn-user-update primary-btn common-btn margin-right-5" (click)="apply()">
+                <img src="assets/images/accept-icon.svg" alt="" />
+                <span>Apply </span>
+            </button>
+            <button type="button" class="btn-cancel btn-cancel-all btn-dim-action common-btn" (click)="cancel()">
+                <img src="assets/images/dim-cancel-icon.svg" alt="" />
+                <span>Cancel</span>
+            </button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</footer>

@@ -1,0 +1,342 @@
+<!-- style="overflow: hidden; flex-grow: 1; height: calc(100vh - 90px);"-->
+<ngx-spinner bdOpacity="0.9" bdColor="rgba(51,51,51,0.91)" size="default" color="#fff" type="ball-fussion"
+  [fullScreen]="true">
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+<app-notifier></app-notifier>
+<div class="header-bottom-admin">
+  <div class="row margin-left-0 margin-right-0 justify-content-between">
+    <div class="col-xl-3 col-lg-3 padding-left-10">
+      <app-breadcrumb></app-breadcrumb>
+    </div>
+
+    <div class="col-xl-9 col-lg-9">
+
+      <div class="row justify-content-end align-items-center">
+        <button type="button" class="btn-create-user hover-btn-icon btn-blue-header common-btn margin-right-15"
+          (click)="openCreateUser()" style="margin-top: 2px;">
+          <img id="icon" src="assets/images/create-user-icon.svg" class="normal-icon" alt="create-user" />
+          <img id="icon" src="assets/images/hover-create-user-icon.svg" class="hover-icon icon"
+            alt="create-user" />&nbsp;
+          <span>Create User</span>
+        </button>
+        <button type="btn" style="border: 0; margin-top: 7px; background-color: #ff5050" (click)="getData()">
+          <i class="fas fa-info-circle icon-color" ng-reflect-ng-style="[object Object]"
+            style="color: rgb(255, 255, 255); font-size: 18px;"></i>
+        </button> &nbsp;
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div style="text-align: right; margin-right:10px; margin-top:10px; color:#ff5050">
+  Last Updated On :{{uploadedDate | date: "dd/MM/yyyy HH:mm"}}
+
+</div> -->
+
+<div style="margin-top:10px; margin-left: 5px;">
+  <ag-grid-angular style="overflow: hidden; flex-grow: 1; height: calc(100vh - 110px); " id="userManagementGrid"
+    class="ag-theme-balham  m-0  w-100" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [context]="context"
+    [animateRows]="true" [headerHeight]="headerHeight" [enableRangeSelection]="true" [rowSelection]="rowSelection"
+    (gridReady)="onGridReady($event)" [suppressContextMenu]="true" [rowData]="userList" [floatingFilter]="true"
+    [rowGroupPanelShow]="rowGroupPanelShow" [frameworkComponents]="frameworkComponents"
+    [suppressDragLeaveHidesColumns]="true">
+  </ag-grid-angular>
+</div>
+
+<div class="create-user-panel user-panel" id="create-user-right">
+  <div class="sidebar-header">
+    <div class="sidebar-title-head">
+      <img src="assets/images/create-user-title-icon.svg" />
+      <span [innerHTML]="isUpdate  === true ? 'Update user' : 'Create User'"></span>
+      <span class="pointer float-right"><img src="assets/images/cancel-btn-icon.svg"
+          (click)="closeCreateUser(createUserForm)" /></span>
+    </div>
+  </div>
+  <div class="sidebar-container">
+    <div class="create-user-form">
+      <form novalidate autocomplete="off" (ngSubmit)="createUser(createUserForm)" name="createUserForm"
+        #createUserForm="ngForm">
+        <div class="height-create-user">
+          <div class="custom-padding">
+            <div class="row margin-left-0 margin-right-0">
+              <div class="col-xl-4 col-lg-4 padding-left-0">
+
+                <label style="font-size: 13px; font-weight:bold "> Employee Id:</label>
+
+              </div>
+              <div class="col-xl-8 col-lg-8 padding-left-0">
+                <div class="form-group">
+                  <!-- <label> Employee</label> -->
+                  <input type="text" class="form-control custom-sidebar-input text-left"
+                    placeholder=" Enter Employee Id" name="UserIds" #UserIds="ngModel" [(ngModel)]="UserId" />
+                  <!-- <div
+          *ngIf="
+            UserIds.invalid &&
+            (UserIds.dirty || UserIds.touched )
+          "
+          class="mb-4 text-danger"
+        >
+          <span [hidden]="!UserIds?.errors.required">Enter Employee Id</span>
+        </div> -->
+                </div>
+                <button type="button" class="btn-search btn-search-bar common-btn" *ngIf="!isUpdate"
+                  (click)="getUserDetails(UserId)">
+                  <img src="assets/images/search-icon.svg" />
+
+                </button>
+              </div>
+
+              <!-- <div class="col-xl-12 col-lg-12 padding-left-0">
+              <div class="form-group">
+                <ng-select style="width: 150px ;" name="roleID"
+                  class=" customdropDowns form-control custom-sidebar-input text-left " [clearable]="false"
+                  [(ngModel)]="selectedUserRole" [searchable]="false" [items]="role" bindLabel="name"
+                  placeholder="Select Role" bindValue="role_id" roleID="ngMOdel">
+                </ng-select>
+              </div>
+            </div> -->
+              <div class="col-xl-12 col-lg-12 padding-left-0">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-4 " style="margin-top:7px">
+                      <label style="font-size: 13px; font-weight:bold "> Role :</label>
+                    </div>
+                    <div class="col-xl-8 col-lg-8">
+                      <ng-select style="width: 150px ;" name="roleID"
+                        class=" customdropDowns form-control custom-sidebar-input text-left " [clearable]="false"
+                        [(ngModel)]="selectedUserRole" [searchable]="false" [items]="role" bindLabel="roleCode"
+                        placeholder="Select Role" bindValue="roleCode" roleID="ngMOdel">
+                      </ng-select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border-separator"></div>
+              <div class="col-xl-12 col-lg-12 padding-left-0" style="margin-top:10px">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-4 " style="margin-top:7px">
+                      <label style="font-size: 13px; font-weight:bold "> First Name :</label>
+                    </div>
+                    <div class="col-xl-8 col-lg-8">
+                      <input appTitleCase type="text" class="form-control custom-sidebar-input text-left"
+                        name="FirstName" #FirstName="ngModel" [(ngModel)]="userData.firstName" [maxLength]="15"
+                        placeholder="First Name" readOnly>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-12 col-lg-12 padding-left-0">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-4 " style="margin-top:7px">
+                      <label style="font-size: 13px; font-weight:bold "> Last Name :</label>
+                    </div>
+                    <div class="col-xl-8 col-lg-8">
+                      <input appTitleCase type="text" class="form-control custom-sidebar-input text-left"
+                        placeholder="Last Name" name="LastName" #LastName="ngModel" [maxLength]="15"
+                        [(ngModel)]="userData.lastName" readOnly />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-xl-12 col-lg-12 padding-left-0">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-4 " style="margin-top:7px">
+                      <label style="font-size: 13px; font-weight:bold "> Email :</label>
+                    </div>
+                    <div class="col-xl-8 col-lg-8">
+                      <input type="text" class="form-control custom-sidebar-input text-left" placeholder="Email Id"
+                        name="Email" #Email="ngModel" [(ngModel)]="userData.email" readOnly>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-12 col-lg-12 padding-left-0">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-4 " style="margin-top:7px">
+                      <label style="font-size: 13px; font-weight:bold "> Department :</label>
+                    </div>
+                    <div class="col-xl-8 col-lg-8">
+                      <input type="text" class="form-control custom-sidebar-input text-left" placeholder="Department"
+                        name="Department" #Department="ngModel" [(ngModel)]="userData.department" readOnly>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-12 col-lg-12 padding-left-0">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-4 " style="margin-top:7px">
+                      <label style="font-size: 13px; font-weight:bold "> Location :</label>
+                    </div>
+                    <div class="col-xl-8 col-lg-8">
+                      <input type="text" class="form-control custom-sidebar-input text-left" placeholder="Location"
+                        name="Location" #Location="ngModel" [(ngModel)]="userData.location" readOnly>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-xl-6 col-lg-6 padding-left-0">
+              <div class="form-group">
+                <input appTitleCase type="text" class="form-control custom-sidebar-input text-left" name="FirstName"
+                  #FirstName="ngModel" [(ngModel)]="userData.firstName" [maxLength]="15" placeholder="First Name"  readOnly>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 padding-left-0">
+              <div class="form-group">
+                <input appTitleCase type="text" class="form-control custom-sidebar-input text-left"
+                  placeholder="Last Name" name="LastName" #LastName="ngModel" [maxLength]="15"
+                  [(ngModel)]="userData.lastName"  readOnly />
+              </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 padding-left-0">
+              <div class="form-group">
+                <input type="text" class="form-control custom-sidebar-input text-left" placeholder="Email Id"
+                  name="Email" #Email="ngModel" 
+                  [(ngModel)]="userData.email" readOnly >
+              </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 padding-left-0">
+              <div class="form-group">
+                <input type="text" class="form-control custom-sidebar-input text-left" placeholder="Department"
+                  name="Department" #Department="ngModel" 
+                  [(ngModel)]="userData.department"  readOnly>
+              </div>
+            </div> -->
+
+              <!-- <div class="col-xl-6 col-lg-6 padding-left-0">
+              <div class="form-group">
+                <input type="text" class="form-control custom-sidebar-input text-left" placeholder="Username"
+                  name="Username" #Username="ngModel" 
+                  [(ngModel)]="userData.username"  [disabled]="isUpdate  === true">
+              </div>
+            </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="border-separator"></div>
+ 
+
+      <div class="border-separator"></div>
+      <div class="text-right custom-padding">
+        <button type="submit" class="btn-user-save primary-btn common-btn margin-right-10" *ngIf="!isUpdate">
+          <img src="assets/images/save-btn-icon.svg" class="margin-right-5" />
+          Save
+        </button>
+        <button type="button" *ngIf="isUpdate" class="btn-user-update primary-btn common-btn margin-right-10"
+          (click)="UpdateUser(createUserForm)">
+          <img src="assets/images/save-btn-icon.svg" class="margin-right-5" />
+          Update
+        </button>
+        <button type="button" class="btn-user-cancel secondary-btn common-btn"
+          (click)="closeCreateUser(createUserForm)">
+          <img src="assets/images/cancel-btn-icon.svg" class="margin-right-5" />
+          Cancel
+        </button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Deactivate User -->
+<div id="box-delete-user" class="box-reset-pwd box-modal-common" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-child-name">
+  <div class="box-header">
+    <div class="row">
+      <div class="col-xl-10 col-lg-10">
+        <div class="title-import text-left" [innerHTML]="userData.isActive === 1 ? 'Activate User' : 'Deactivate User'">
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-2">
+        <div class="text-right">
+          <button type="button" class="btn-close-import common-btn" (click)="cancelUserStatus()">
+            <img src="assets/images/cancel-btn-icon.svg" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-container">
+    <div class="text-center">
+      <div class="icon-center-big">
+        <img class="user-status" src="assets/images/user-activate.svg" />
+      </div>
+      <div class="content-center-alert" *ngIf="userData.isActive === 1">
+        Are you sure you want to activate user <br />
+        {{userData.firstName}} {{userData.lastName}} ?
+        <br>
+        <button type="button" class="btn-pwd-confirm primary-btn common-btn margin-right-10"
+          (click)="updateUserStatus()">
+          <img src="assets/images/save-btn-icon.svg" class="margin-right-6" />
+          Activate User
+        </button>
+        <button type="button" class="btn-pwd-cancel secondary-btn common-btn" (click)="cancelUserStatus()">
+          <img src="assets/images/cancel-btn-icon.svg" class="margin-right-5" />
+          Cancel
+        </button>
+      </div>
+      <div class="content-center-alert" *ngIf="userData.isActive !== 1">
+        Are you sure you want to deactivate user <br />
+        {{userData.firstName}} {{userData.lastName}} ?
+        <div>
+          <button type="button" class="btn-pwd-confirm primary-btn common-btn margin-right-10"
+            (click)="updateUserStatus()">
+            <img src="assets/images/save-btn-icon.svg" class="margin-right-5" />
+            Deactivate User
+          </button>
+          <button type="button" class="btn-pwd-cancel secondary-btn common-btn" (click)="cancelUserStatus()">
+            <img src="assets/images/cancel-btn-icon.svg" class="margin-right-5" />
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="last-updated-user-data" class="user-management box-loaded-data box-modal-common dataSummary" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-child-name">
+  <div class="box-header">
+    <div class="row">
+      <div class="col-xl-10 col-lg-10">
+        <div class="title-import text-left">
+          Data Update Summary
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-2">
+        <div class="text-right">
+          <button type="button" class="btn-close-import common-btn" (click)="closeModal()">
+            <img src="assets/images/cancel-btn-icon.svg" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr class="sticky-header">
+        <th class="text-align-left">File Type</th>
+        <th class="text-align-left">Last Uploaded Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of fileUploadedList ; let i = index;">
+        <td>{{file.FileType}}</td>
+        <td>{{file.Date | date: 'dd/MM/yyyy hh:mm'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,720 @@
+<div class="sidebar-left-panel w-60" id="sidebar-left" style="overflow: auto; overflow-x:hidden">
+  <div class="sidebar-header" style="border-bottom: rgb(178, 178, 178) 1px solid;">
+    <div class="sidebar-title left-float" style="color:#000">Dashboard</div>
+    <div class="sidebar-header-links left-float">
+      <!-- <a title="Home" [routerLink]="['/admin/company']" class="home-link btn-sidebar hover-btn-icon">
+        <img src="assets/images/home-icon.svg" class="normal-icon" />
+        <img src="assets/images/hover-home-icon.svg" class="hover-icon" />
+      </a> -->
+      <button type="button" title="Menu" class="btn-sidebar hover-btn-icon common-btn" onclick="openNav()">
+        <img src="assets/images/sidebar-icon.svg" class="normal-icon" alt="sidebar" />
+        <img src="assets/images/close-sidebar-icon.svg" class="hover-icon" alt="sidebar" />
+      </button>
+      <button type="button" title="Menu" class="btn-close-sidebar-panel common-btn"
+        style="display: none; margin-left: 45px;" onclick="closeNav()">
+        <img src="assets/images/sidebar-icon.svg" />
+      </button>
+    </div>
+    <div class="clearfix"></div>
+
+  </div>
+
+  <div class="sidebar-container">
+
+    <div class="sidebar-container">
+      <ul>
+        <!-- <li class="custom-dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="menu-icon">
+            <i class="fa-solid fa-house" style="font-size: 22px;" title="Home"></i>
+          </span>
+
+          <span class="menu-name">Home</span>
+          <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" /></a>
+
+      </li> -->
+        <li class="s-dropdown">
+          <a [routerLink]="['/admin/home']" routerLinkActive="active" title="Home">
+            <span class="menu-icon">
+              <i class="fa-solid fa-house" style="font-size: 22px;"></i>
+              <!-- <img
+              src="assets/images/side-menu-2.png" title="Users" /> -->
+            </span><span class="menu-name" style="margin-left: 2px ;">Home</span></a>
+          <div class="clearfix"></div>
+        </li>
+
+        <li class="s-dropdown" *ngIf="currentUser.RoleCode === 'Admin'">
+          <a [routerLink]="['/admin/buyerPermission']" routerLinkActive="active" title="Part Allocation">
+            <i class="fa-solid fa-user-plus" style="font-size: 22px;color: #000; margin-left: 3px;"></i>
+            <span class="menu-icon">
+            </span><span class="menu-name" style="margin-left: -7px;">
+              Part Allocation</span></a>
+          <div class="clearfix"></div>
+        </li>
+
+        <!-- <li class="s-dropdown">
+          <a [routerLink]="['/admin/itemMaster']" routerLinkActive="active" title="Item Master">
+            <span class="menu-icon">
+              <i class="fa-solid fa-book" style="font-size: 22px;"></i>
+            </span><span class="menu-name" style="margin-left: 7px;">Item master</span></a>
+          <div class="clearfix"></div>
+        </li> -->
+
+        <!-- <li class="s-dropdown">
+          <a [routerLink]="['/admin/itemSupplierMaster']" routerLinkActive="active " title="Plant Supplier Item Master">
+            <span class="menu-icon">
+              <i class="fa-solid fa-boxes-packing" style="font-size: 22px;"></i>
+            </span><span class="menu-name " style="margin-left: -1px;">Plant supplier items </span></a>
+          <div class="clearfix"></div>
+        </li> -->
+
+        <!-- <li class="s-dropdown">
+        <a [routerLink]="['/admin/MRP']" routerLinkActive="active" title="MRP">
+          <span class="menu-icon">
+            <i class="fa-sharp fa-solid fa-clipboard-list" style="font-size: 23px; margin-left: 5px;"></i>
+          </span><span class="menu-name" style="margin-left: 2px;">MRP</span>
+        </a>
+        <div class="clearfix"></div>
+      </li> -->
+
+        <!-- <li class="s-dropdown">
+          <a [routerLink]="['/admin/stockData']" routerLinkActive="active" title=" Stock">
+            <i class="	fas fa-chart-line" style="font-size: 22px;color: #000; margin-left: 3px;"></i>
+            <span class="menu-icon">
+            </span><span class="menu-name" style="margin-left: -2px">
+              Stock</span></a>
+          <div class="clearfix"></div>
+        </li> -->
+
+        <li class="custom-dropdown" [hidden]="currentUser.RoleCode !== 'Buyer'">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Stock Data">
+            <span class="menu-icon">
+              <i class="	fas fa-chart-line" style="font-size: 22px;color: #000; margin-left: 3px;"></i>
+            </span>
+
+            <span class="menu-name" style="margin-left: 2px;">Stock Data</span>
+            <i class="	fas fa-chevron-down" style="margin-left: 47%;"></i>
+            <!-- <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" style="color: #000; font-size: 22px;" /> -->
+          </a>
+
+          <ul class="drop-submenu">
+            <li>
+              <a [routerLink]="['/admin/stockData']" style="margin-left: -17px;" routerLinkActive="active">Stock Data -
+                Today</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin/stockDataPast']" style="margin-left: -17px;" routerLinkActive="active">Stock
+                Past Data
+              </a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <li class="custom-dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="MRP Plants">
+            <span class="menu-icon">
+              <i class="fas fa-file-invoice-dollar" style="font-size: 23px; margin-left: 5px;"></i>
+            </span>
+
+            <span class="menu-name" style="margin-left: 5px;">MRP Plants</span>
+            <i class="	fas fa-chevron-down" style="margin-left: 45%;"></i>
+            <!-- <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" style="color: #000; font-size: 22px;" /> -->
+          </a>
+
+          <ul class="drop-submenu">
+            <li>
+              <a [routerLink]="['/admin/MRP']" routerLinkActive="active" style="margin-left: -17px;">MRP Current
+                Month</a>
+            </li>
+            <li>
+              <!-- class="disableds"-->
+              <a [routerLink]="['/admin/mrp-past-data']" routerLinkActive="active" style="margin-left: -17px;">MRP Past
+                Data</a>
+            </li>
+          </ul>
+
+        </li>
+
+        <li class="s-dropdown" [hidden]="currentUser.RoleCode !== 'Buyer'">
+          <a [routerLink]="['/admin/invoice']" routerLinkActive="active" (click)="isMenuCollapsed = false"
+            title="Invoice">
+            <!-- <i class="fa-solid fa-file-invoice"></i> -->
+            <i class="fa-solid fa-file-invoice fa-lg" style="font-size: 22px; color: #000; margin-left: 3px;"
+              aria-hidden="true"></i>
+            <span class="menu-icon">
+            </span>
+            <span class="menu-name" style="margin-left: 8px;">Invoice</span>
+          </a>
+          <div class="clearfix"></div>
+        </li>
+
+        <!-- <li class="s-dropdown">
+          <a [routerLink]="['/admin/itr-list']" routerLinkActive="active" title="ITR">
+            <i class="fa-solid fa-file-invoice fa-lg" style="font-size: 22px; color: #000; margin-left: 3px;"
+              aria-hidden="true"></i>
+            <span class="menu-icon">
+            </span>
+            <span class="menu-name" style="margin-left: 5px;">ITR </span>
+          </a>
+          <div class="clearfix"></div>
+        </li> -->
+
+        <!-- <li class="s-dropdown">
+          <a [routerLink]="['/admin/GRN']" routerLinkActive="active" title=" GRN">
+            <i class="fa-sharp fa-solid fa-file" style="font-size: 22px;color: #000; margin-left: 3px;"></i>
+            <span class="menu-icon">
+            </span><span class="menu-name" style="margin-left:3px;">
+              GRN</span></a>
+          <div class="clearfix"></div>
+        </li> -->
+
+        <li class="custom-dropdown" [hidden]="currentUser.RoleCode !== 'Buyer'">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="GRN">
+            <span class="menu-icon">
+              <i class="fa-sharp fa-solid fa-file" style="font-size: 22px;color: #000; margin-left: 3px;"></i>
+            </span>
+
+            <span class="menu-name" style="margin-left: 3px;"> GRN</span>
+            <i class="	fas fa-chevron-down" style="margin-left: 64%;"></i>
+            <!-- <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" style="color: #000; font-size: 22px;" /> -->
+          </a>
+
+          <ul class="drop-submenu">
+            <li>
+              <a [routerLink]="['/admin/GRN']" routerLinkActive="active" style="margin-left: -17px;">GRN -Today</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin/grnPastData']" routerLinkActive="active" style="margin-left: -17px;">GRN Past
+                Data</a>
+            </li>
+          </ul>
+
+        </li>
+        <!-- <li class="s-dropdown">
+          <a [routerLink]="['/admin/receipts']" [routerLink]="['/admin/receipts']" routerLinkActive="active"
+            title=" GIT">
+            <i class="fa-sharp fa-solid fa-receipt" style="font-size: 22px;color: #000; margin-left: 3px;"></i>
+            <span class="menu-icon">
+            </span><span class="menu-name" style="margin-left: 3px;">
+              GIT</span></a>
+          <div class="clearfix"></div>
+        </li> -->
+
+        <li class="custom-dropdown" [hidden]="currentUser.RoleCode !== 'Buyer'">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="GIT">
+            <span class="menu-icon">
+              <i class="fa-solid fa-scroll" style="font-size: 22px;color: #000; margin-left: -5px;"></i>
+            </span>
+
+            <span class="menu-name" style="margin-left: 3px;"> GIT</span>
+            <i class="	fas fa-chevron-down" style="margin-left: 67%;"></i>
+            <!-- <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" style="color: #000; font-size: 22px;" /> -->
+          </a>
+
+          <ul class="drop-submenu">
+            <li>
+              <a [routerLink]="['/admin/receipts']" routerLinkActive="active" style="margin-left: -17px;">GIT -Today</a>
+            </li>
+            <!-- <li class="disableds">
+              <a [routerLink]="['/admin/git-past-data']" routerLinkActive="active" style="margin-left: -17px;">GIT Past
+                Data</a>
+            </li> -->
+          </ul>
+
+        </li>
+
+        <li class="custom-dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Master Data">
+            <span class="menu-icon">
+              <i class="fa-sharp fa-solid fa-receipt" style="font-size: 22px;color: #000; margin-left: 3px;"></i>
+            </span>
+
+            <span class="menu-name" style="margin-left: 3px;"> Master Data</span>
+            <i class="	fas fa-chevron-down" style="margin-left: 44%;"></i>
+            <!-- <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" style="color: #000; font-size: 22px;" /> -->
+          </a>
+
+          <ul class="drop-submenu">
+            <li>
+              <a [routerLink]="['/admin/itemMaster']" routerLinkActive="active" style="margin-left: -17px;">Item
+                master</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin/itemSupplierMaster']" routerLinkActive="active" style="margin-left: -17px;">Item
+                Supplier Master</a>
+            </li>
+            <!-- <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">Order Master</a>
+            </li> -->
+            <li>
+              <a [routerLink]="['/admin/abcanalysis']" routerLinkActive="active" style="margin-left: -17px;">ABC
+                Analysis</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin/MvmTypeMaster']" routerLinkActive="active" style="margin-left: -17px;">Movement
+                Type Master</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin/plantDivisionMaster']" routerLinkActive="active"
+                style="margin-left: -17px;">Plant Division Master</a>
+            </li>
+            <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">Tape Conversion</a>
+            </li>
+          </ul>
+
+        </li>
+
+        <li class="s-dropdown" [hidden]="currentUser.RoleCode !== 'Buyer'">
+          <a [routerLink]="['/admin/order']" routerLinkActive="active" title=" Generate Orders">
+            <span class="menu-icon">
+              <i class="fa-solid fa-cart-shopping" style="font-size: 22px;"></i>
+            </span><span class="menu-name" style="margin-left: 2px;">Generate Orders</span></a>
+          <div class="clearfix"></div>
+        </li>
+
+        <!-- <li class="s-dropdown">
+          <a [routerLink]="['/admin/MvmTypeMaster']" routerLinkActive="active" title="Movement Type Master">
+            <i class="fa-solid fa-file-waveform" style="font-size: 22px;color: #000; margin-left: 3px;"></i>
+            <span class="menu-icon">
+            </span><span class="menu-name" style="margin-left:3px;">
+              Movement Type Master</span></a>
+          <div class="clearfix"></div>
+        </li> -->
+
+        <!-- <li class="s-dropdown">
+          <a [routerLink]="['/admin/plantDivisionMaster']" routerLinkActive="active" title="Plant Division Master">
+            <i class="fas fa-industry" style="font-size: 22px;color: #000; margin-left: 3px;"></i>
+            <span class="menu-icon">
+            </span><span class="menu-name" style="margin-left:3px;">
+              Plant Division Master</span></a>
+          <div class="clearfix"></div>
+        </li> -->
+
+        <!-- <li class="s-dropdown">
+        <a [routerLink]="['/admin/abcanalysis']" routerLinkActive="active" title="ABC Analysis">
+          <i class="fas fa-chart-bar" style="font-size: 22px; color: #000; margin-left: 3px;"
+            aria-hidden="true"></i>
+          <span class="menu-icon">
+          </span><span class="menu-name" style="margin-left:3px;">
+            ABC Analysis</span></a>
+        <div class="clearfix"></div>
+      </li> -->
+
+        <li class="custom-dropdown" [hidden]="currentUser.RoleCode !== 'Admin'">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Admin">
+            <span class="menu-icon">
+              <!-- <i class="fas fa-chevron-down fa-lg" title="Admin"></i> -->
+              <i class="fa fa-user" aria-hidden="true" style="font-size: 22px;"></i>
+            </span>
+
+            <span class="menu-name" style="margin-left: 5px;">Admin</span>
+
+            <i class="	fas fa-chevron-down" style="margin-left: 59%;"></i>
+            <!-- <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" style="color: #000; font-size: 22px;" /> -->
+          </a>
+
+          <ul class="drop-submenu">
+            <li>
+              <a [routerLink]="['/admin/user']" routerLinkActive="active" style="margin-left: -17px;">Manage User</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin/itr-list']" routerLinkActive="active" style="margin-left: -17px;">ITR</a>
+            </li>
+
+            <!-- <li>
+              <a [routerLink]="['/admin/buyerPermission']" routerLinkActive="active">Buyer Supplier Allocation</a>
+            </li> -->
+            <!-- <li>
+            <a [routerLink]="['/admin/MRP']" routerLinkActive="active">MRP</a>
+          </li> -->
+            <!-- <li>
+            <a [routerLink]="['/admin/buyerPermission']" routerLinkActive="active">Buyer Supplier Allocation</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/stockData']" routerLinkActive="active">Stock Location Mapping</a>
+          </li> -->
+            <!-- <li>
+            <a [routerLink]="['/admin/itemMaster']" routerLinkActive="active">Item Master</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/itemSupplierMaster']" routerLinkActive="active">Item Supplier Master</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/stockData']" routerLinkActive="active">Stock - Select Location (buyer)</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/generateOrder']" routerLinkActive="active">Order Generation (buyer)</a>
+          </li> -->
+            <!-- <li>
+            <a [routerLink]="['/admin/materialMaster']" routerLinkActive="active">
+              <span>
+                Material Master
+              </span>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/admin/movementMaster']" routerLinkActive="active">Movement Type Master</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/plantMaster']" routerLinkActive="active">Plant Master</a>
+          </li>
+
+       -->
+
+            <!-- <li>
+            <a  routerLinkActive="active">Supplier Master</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/stockData']" routerLinkActive="active">Stock - Select Location</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/totalOrder']" routerLinkActive="active">Total Order</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/viewOrder']" routerLinkActive="active">View Order</a>
+          </li>
+
+          <li>
+            <a  routerLinkActive="active">Project Customer Master</a>
+          </li>
+
+          <li>
+            <a  routerLinkActive="active">Project Material</a>
+          </li> -->
+
+            <!-- <li>
+            <a [routerLink]="['/admin/movementMaster']" routerLinkActive="active">Consumption Data</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/movementMaster']" routerLinkActive="active">Inventory Correction Data</a>
+          </li> -->
+
+            <!-- <li>
+            <a routerLinkActive="active">Daily Shipment</a>
+          </li> -->
+            <!-- <li>
+            <a [routerLink]="['/admin/inovice']" routerLinkActive="active"> Inovice </a>
+          </li> -->
+          </ul>
+
+        </li>
+
+
+
+        <!-- <li class="custom-dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="menu-icon">
+            <i class="fas fa-chevron-down fa-lg" title="Buyer"></i>
+          </span>
+
+          <span class="menu-name">Buyer</span>
+        </a>
+
+        <ul class="drop-submenu">
+
+          <li>
+            <a [routerLink]="['/admin/itemMaster']" routerLinkActive="active">Item Master</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/itemSupplierMaster']" routerLinkActive="active">Item Supplier Master</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/stockData']" routerLinkActive="active">Stock - Select Location </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/generateOrder']" routerLinkActive="active">Order Generation</a>
+          </li>
+
+        </ul>
+
+      </li> -->
+
+
+        <!-- <li class="custom-dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="menu-icon">
+            <i
+                  class="fas fa-chevron-up fa-lg" title="Upload"></i>
+          </span>
+    
+          <span class="menu-name">Upload</span>
+          <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" /></a>
+
+        <ul class="drop-submenu">
+          <li>
+            <a [routerLink]="['/admin/mrp']" routerLinkActive="active">Mrp</a>
+          </li>
+          <li>
+            <a [routerLink]="['/admin/inovice']" routerLinkActive="active"> Inovice </a>
+          </li>
+        </ul>
+
+      </li> -->
+
+        <!-- <li class="custom-dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="menu-icon">
+            <i class="fas fa-sync-alt" title="Transactions" ></i>
+          </span>
+          <span class="menu-name">Transactions</span>
+          <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" style="color: #000;" /></a>
+
+        <ul class="drop-submenu">
+          
+          <li>
+            <a routerLinkActive="active">Create Order</a>
+          </li>
+          <li>
+            <a  routerLinkActive="active"> View Order</a>
+          </li>
+          <li>
+            <a  routerLinkActive="active"> Open order </a>
+          </li>
+          <li>
+            <a  routerLinkActive="active"> Change Invoice Date </a>
+          </li>
+   
+        </ul>
+
+      </li> -->
+
+        <li class="custom-dropdown" [hidden]="currentUser.RoleCode !== 'Buyer'">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Reports">
+            <span class="menu-icon">
+              <!-- <img src="assets/images/side-menu-1.png" title="Transactions" /> -->
+              <!-- <i class="fas fa-folder-open mr-1 fa-lg"></i> -->
+              <!-- <i class="fas fa-share-alt"></i> -->
+              <i class="fas fa-folder-open mr-1 fa-lg"></i>
+            </span>
+            <span class="menu-name" style="margin-left: 0px;">Reports</span>
+            <i class="	fas fa-chevron-down" style="margin-left: 56%;"></i></a>
+
+          <ul class="drop-submenu">
+            <!-- <li>
+            <a [routerLink]="['/admin/company']" routerLinkActive="active">company</a>
+          </li> -->
+            <!-- <li>
+            <a routerLinkActive="active">Goods In Transit</a>
+          </li> -->
+            <!-- <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;"> Local Parts</a>
+            </li> -->
+            <!-- <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;"> Import Parts</a>
+            </li> -->
+            <!-- <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;"> Local Billing</a>
+            </li> -->
+            <!-- <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;"> Wire Categorys</a>
+            </li> -->
+            <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">High MOQ Orders</a>
+            </li>
+            <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">Air Orders</a>
+            </li>
+            <!-- <li>
+              <a [routerLink]="['/admin/Consumption']" routerLinkActive="active"> Consumption</a>
+            </li> -->
+            <!-- <li>
+              <a [routerLink]="['//admin/abcanalysis']" routerLinkActive="active"> ABC Analysis</a>
+            </li> -->
+            <li>
+              <a [routerLink]="['/admin/slow-moving']" routerLinkActive="active" style="margin-left: -17px;"> Slow
+                Moving</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin/Daily-Shipment']" routerLinkActive="active" style="margin-left: -17px;"> Daily
+                Shipment</a>
+            </li>
+            <!-- <li>
+              <a [routerLink]="['/admin/inventoryCorrection']" routerLinkActive="active">Inventory Correction</a>
+            </li> -->
+            <li>
+              <a [routerLink]="['/admin/MRPAnalysis']" routerLinkActive="active" style="margin-left: -17px;">MRP
+                Analysis</a>
+            </li>
+            <!-- <li >
+              <a [routerLink]="['/admin/MRPAnalysisPartWise']" routerLinkActive="active" style="margin-left: -17px;">MRP
+                Analysis Part-Wise</a>
+            </li> -->
+            <li >
+              <a [routerLink]="['/admin/ShortageReport']" routerLinkActive="active" style="margin-left: -17px;">Shortage
+                Reports</a>
+            </li>
+
+
+            <!-- <li>
+            <a [routerLink]="['/admin/Non-Moving']" routerLinkActive="active"> Non-Moving</a>
+          </li> -->
+            <!-- <li>
+            <a routerLinkActive="active"> Payment Due- FBL1N </a>
+          </li>
+          <li>
+            <a routerLinkActive="active"> Receipt GRN </a>
+          </li>
+          <li>
+            <a routerLinkActive="active"> Open Order Maturity Report </a>
+          </li>
+          <li>
+            <a routerLinkActive="active"> Order Working </a>
+          </li>
+          <li>
+            <a routerLinkActive="active"> Total Order </a>
+          </li>
+          <li>
+            <a routerLinkActive="active"> MOQ Confirmation </a>
+          </li>
+          <li>
+            <a routerLinkActive="active">Air Order Confirmation</a>
+          </li>
+          <li>
+            <a routerLinkActive="active">MRP Analysis </a>
+          </li>
+          <li>
+            <a routerLinkActive="active"> Inventory Correction</a>
+          </li> -->
+            <!-- <li>
+            <a [routerLink]="['/admin/subcompany']" routerLinkActive="active"> Current Stock </a>
+          </li>
+          <li>
+            <a [routerLink]="['/admin/subcompany']" routerLinkActive="active"> GIT </a>
+          </li>
+          <li>
+            <a [routerLink]="['/admin/subcompany']" routerLinkActive="active"> Invoice </a>
+          </li> -->
+          </ul>
+
+        </li>
+
+        <li class="custom-dropdown" [hidden]="currentUser.RoleCode !== 'Buyer'">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Open Order Maturity ">
+            <span class="menu-icon">
+              <i class="fas fa-industry" style="font-size: 25px;color: #000; margin-left: 2px;"></i>
+            </span>
+
+            <span class="menu-name" style="margin-left: 1px;">Open Order Maturity </span>
+            <i class="	fas fa-chevron-down" style="margin-left: 23%;"></i>
+            <!-- <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" style="color: #000; font-size: 22px;" /> -->
+          </a>
+
+          <ul class="drop-submenu">
+            <li>
+              <a [routerLink]="['/admin/order-maturity']" routerLinkActive="active" style="margin-left: -17px;">Order
+                Updation</a>
+            </li>
+            <!-- <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">Order Report - Download</a>
+            </li> -->
+          </ul>
+
+        </li>
+
+        <li class="custom-dropdown" [hidden]="currentUser.RoleCode !== 'Buyer'">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Analysis Section">
+            <span class="menu-icon">
+              <i class="fa-solid fa-boxes-packing" style="font-size: 22px;"></i>
+            </span>
+
+            <span class="menu-name" style="margin-left: -1px;">Analysis Section</span>
+            <i class="	fas fa-chevron-down" style="margin-left: 34%;"></i>
+            <!-- <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" style="color: #000; font-size: 22px;" /> -->
+          </a>
+
+          <ul class="drop-submenu">
+            <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">High MOQ Parts</a>
+            </li>
+            <li class="disableds">
+              <a [routerLink]="['/admin/MRPAnalysisPartWise']" routerLinkActive="active" style="margin-left: -17px;">MRP
+                Analysis Part-Wise</a>
+            </li>
+            <li class="disableds">
+              <a [routerLink]="['/admin/MrpAnalysisPlantWise']" routerLinkActive="active" style="margin-left: -17px;">MRP
+                Analysis Plant-Wise</a>
+            </li>
+            <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">MRP Analysis - Multiple Parts</a>
+            </li>
+            <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">MRP Water Flow - Single Parts</a>
+            </li>
+            <!-- <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">Consumption Analysis </a>
+            </li> -->
+            <li>
+              <a [routerLink]="['/admin/Consumption']" routerLinkActive="active" style="margin-left: -17px;">Consumption
+                Report </a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin/inventoryCorrection']" routerLinkActive="active"
+                style="margin-left: -17px;">Inventory Correction </a>
+            </li>
+          </ul>
+
+        </li>
+
+        <li class="custom-dropdown" [hidden]="currentUser.RoleCode !== 'Buyer'">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Inventory Analysis">
+            <span class="menu-icon">
+              <i class="fa-solid fa-book" style="font-size: 22px;"></i>
+            </span>
+
+            <span class="menu-name" style="margin-left: 7px;">Inventory Analysis</span>
+            <i class="	fas fa-chevron-down" style="margin-left: 30%;"></i>
+            <!-- <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" style="color: #000; font-size: 22px;" /> -->
+          </a>
+
+          <ul class="drop-submenu">
+            <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">Supplier Wise Inventory</a>
+            </li>
+            <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">Plant Wise Inventory</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin/itr-format']" routerLinkActive="active" style="margin-left: -17px;">ITR
+                Reports</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="custom-dropdown" [hidden]="currentUser.RoleCode !== 'Buyer'">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title=" Shortage Reports">
+            <span class="menu-icon">
+              <i class="fa-solid fa-boxes-packing" style="font-size: 22px;"></i>
+            </span>
+
+            <span class="menu-name" style="margin-left: -1px;">Shortage Reports</span>
+            <i class="	fas fa-chevron-down" style="margin-left: 31%;"></i>
+            <!-- <img src="assets/images/sidebar-menu-arrow.svg" class="submenu-arrow-icon" style="color: #000; font-size: 22px;" /> -->
+          </a>
+
+          <ul class="drop-submenu">
+            <!-- <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">Shortage List</a>
+            </li> -->
+            <li class="disableds">
+              <a routerLinkActive="active" style="margin-left: -17px;">Shortage Report</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>

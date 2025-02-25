@@ -1,0 +1,26 @@
+<div *ngIf="orderdate "> 
+  <input style="background-color: #fff; margin-top: -5px;" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+      placeholder="Select Date" type="text" class="form-control colorCode" name="WorksheetYear"
+      #selecteDates="ngModel" [(ngModel)]="selectedOrderMaturityDate" readonly bsDatepicker placement="bottom"
+      (ngModelChange)="OnMonthChange()"
+      >
+</div>
+
+
+<div *ngIf="orderStatus  "> 
+    <ng-select  
+      name="selectUserStatus"
+      #selectUserStatus="ngModel"
+      [(ngModel)]="selectedOrderStatus"
+      class="customPermissiondropDown"
+      [clearable]="true"
+      [items]="orderStatusList"
+      bindLabel="name"
+      bindValue="name"
+      [searchable]="true"
+      (ngModelChange)="onOrderStatusChange()"
+      placeholder="Select Order Status"
+      [appendTo]="'body'"
+    >
+    </ng-select>
+  </div>

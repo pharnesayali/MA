@@ -1,0 +1,13 @@
+<div>
+    <button class="eye-button" type="button" title="openfile"  *ngIf="actionFlag" [values]="viewData">
+        <i class="fa fa-eye" aria-hidden="true" (click)="viewOrderDetail(params)"></i></button>
+
+    <button type="button" class="btn-edit btn-action-row common-btn margin-right-5 import-log-download" [values]="rrCalculationFile" title="Download RR"
+        (click)="openFIle('RRcalculation')" *ngIf="actionFlag">
+        <img src="assets/images/file-download-solid.svg" style="height:20px ; " />
+    </button>
+    <button type="button" class="btn-edit btn-action-row common-btn margin-right-5 import-log-download" [values]="ftvqCalculationFile" title="Download"
+        (click)="openFIle('FTVQ')" *ngIf="actionFlag">
+        <img src="assets/images/file-download-solid.svg" style="height:20px ; " />
+    </button>
+</div>

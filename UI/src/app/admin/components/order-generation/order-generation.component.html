@@ -1,0 +1,234 @@
+<ngx-spinner bdOpacity="0.9" bdColor="rgba(51,51,51,0.91)" size="default" color="#fff" type="ball-fussion"
+    [fullScreen]="true">
+    <p style="color: white">Loading...</p>
+</ngx-spinner>
+<app-notifier></app-notifier>
+<div class="header-bottom-admin">
+    <div class="row margin-left-0 margin-right-0">
+        <div class="back-button">
+            <button (click)="Order()" style="border: 0; background-color: #e50013; font-size: 18px;">
+                <i class="fas fa-chevron-left" style="font-size: 30px; color: white;"></i>
+            </button>
+        </div>
+        <div class="col-xl-11 col-lg-11 padding-left-10">
+            <app-breadcrumb></app-breadcrumb>
+        </div>
+
+        <div>
+            <button type="btn" style="border: 0; margin-left: 30px; background-color: #ff5050; font-size: 20px;"
+                (click)="getData()">
+                <i class="fas fa-info-circle icon-color" ng-reflect-ng-style="[object Object]"
+                    style="color: rgb(255, 255, 255); font-size: 18px;"></i>
+            </button> &nbsp;
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- <div style="text-align: right; margin-right:10px; margin-top:0px; color:#ff5050"> -->
+    <!-- <span style="text-align: left;"> -->
+    <!-- Last Updated On :{{uploadedDate | date: "dd/MM/yyyy HH:mm"}} -->
+    <!-- </span> -->
+<!-- </div> -->
+<hr>
+
+<div id="last-updated-order-generation-data" class="order-generation box-loaded-data box-modal-common" tabindex="-1"
+    role="dialog" aria-labelledby="dialog-child-name">
+    <div class="box-header">
+        <div class="row">
+            <div class="col-xl-10 col-lg-10">
+                <div class="title-import text-left">
+                    Data Update Summary
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-2">
+                <div class="text-right">
+                    <button type="button" class="btn-close-import common-btn" (click)="closeModal()">
+                        <img src="assets/images/cancel-btn-icon.svg" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="sticky-header">
+              <th class="text-align-left">File Type</th>
+              <th class="text-align-left">Last Uploaded Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let file of fileUploadedList ; let i = index;">
+                <td>{{file.FileType}}</td>
+                <td>{{file.Date | date: 'dd/MM/yyyy hh:mm'}}</td>
+            </tr>
+          </tbody>
+    </table>
+</div>
+
+<!-- order generation form-->
+<div class="program-filter">
+    <form >
+        <div class="config-box-filter ">
+            <div class="content-container">
+                <div class="config-top-content">
+                    <div class="col-lg-12   col-xl-12 col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                                <div class="form-group custom-blue-input ">
+                                    <label> Week For Order Generation</label>
+                                    <!-- <input style="height: 35px;" placeholder="Enter Week" type="number" minlength="1"
+                                        maxlength="2" class="form-control " [(ngModel)]="orderWeek" name="orderWeek"
+                                        min="1" max="10" (blur)="weekData()" /> -->
+                                    <!-- <ng-select name="selectOrderWeek" #selectOrderWeek="ngModel"
+                                        [(ngModel)]="orderWeek" class="customdropDown" [clearable]="true"
+                                        [items]="weekList" bindLabel="detailWeek" bindValue="weekNumber" [searchable]="true"
+                                        placeholder="Select Ordering Week" [appendTo]="'body'">
+                                    </ng-select> -->
+
+                                    <ng-select name="selectOrderWeek" #selectOrderWeek="ngModel" [(ngModel)]="orderWeek"
+                                    class="customdropDown" [clearable]="true" [items]="weekList" bindValue="WeekNumber"
+                                    bindLabel="WeekNumber" [searchable]="true" placeholder="Select Week"
+                                    placeholder="Select Ordering Week">
+                                </ng-select>
+
+                                    <!-- <ng-select [items]="weekList" bindLabel="firstName">
+                                        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                                            <span class="ng-value-label">{{item.weekNumber + ' ' + item.dateFrom + ''+ item.dateTo}}</span>
+                                            <span class="ng-value-icon right" (click)="clear(item)">×</span> -->
+                                        <!-- </ng-template>
+                                        
+                                    </ng-select>  -->
+                                </div>
+                            </div>
+                            <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group custom-blue-input ">
+                                    <label>Month</label>
+                                    <input disabled style="height: 35px;" class="form-control "
+                                        [(ngModel)]="selectedMonth" name="selectedMonth" />
+                                </div>
+                            </div> -->
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                                <div class="form-group custom-blue-input ">
+                                    <label>Select Type Of Order</label>
+                                    <!-- <ng-select name="selectOrderId" #selectSupplierId="ngModel"
+                                        [(ngModel)]="selectedType" class="customdropDown" [clearable]="true"
+                                        [items]="typeList" bindLabel="typeName" bindValue="typeName" [searchable]="true"
+                                        placeholder="Select OrderType" [appendTo]="'body'">
+                                    </ng-select> -->
+                                    <ng-select name="selectOrderId" required #selectSupplierId="ngModel" [(ngModel)]="selectedType"
+                                    class="customdropDown" [clearable]="true" [items]="typeList"bindValue="typeName"
+                                    bindLabel="typeName" [searchable]="true" placeholder="Select OrderType"
+                                 >
+                                </ng-select>
+                                </div>
+                            </div>
+                            <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
+                                <div class="form-group custom-blue-input ">
+                                    <label>Select Buyer</label>
+                                    <ng-select name="selectBuyerId" #selectBuyerId="ngModel"
+                                        [(ngModel)]="selectedBuyer" class="customdropDown" [clearable]="true"
+                                        [items]="buyerlist" bindLabel="buyerName" bindValue="id" [searchable]="true"
+                                        placeholder="Select Buyer" [appendTo]="'body'">
+                                    </ng-select>
+                                </div>
+                            </div> -->
+                            <!-- <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 ">
+                                <div>
+                                    <button type="submit"
+                                        class="btn-link-action btn-update-company-profile primary-btn common-btn "
+                                        style="margin-top: 29px;">
+                                        Apply</button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="reset"
+                                        class="btn-link-action btn-update-company-profile primary-btn common-btn bg-secondary"
+                                        (click)="resetData(orderForm)">
+                                        Cancel</button>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- <div style="margin-top:10px; margin-left: 5px; overflow: hidden;flex-grow: 1; ">
+    
+</div>
+ -->
+
+
+
+<!-- <div class="bg-white white-container-box p-3 " style="height: calc(95vh - 163px); width:40%; margin-left:30%">
+
+
+    
+
+</div> -->
+<ag-grid-angular *ngIf="statusFlag" style=" height: calc(100vh - 298px);  " id="generateOrder"
+    class="ag-theme-balham  m-0  w-100" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [animateRows]="true"
+    [headerHeight]="headerHeight" [enableRangeSelection]="true" [rowSelection]="rowSelection"
+    (gridReady)="onGridReady($event)" [rowData]="orderData" [suppressContextMenu]="true" [floatingFilter]="true"
+    [suppressRowClickSelection]="true">
+</ag-grid-angular>
+
+<footer style="margin-top: 10px;">
+    <div class="fixed-blue-strip-vendor">
+        <div class="right-float">
+            <button type="button" class="btn-user-update primary-btn common-btn margin-right-5" [disabled]="!orderWeek && !selectedType  "
+                (click)=" onGenerateOrderClick()">
+                <img src="assets/images/accept-icon.svg" alt="" />
+                <span>Generate Order </span>
+            </button>
+            <button type="button" class="btn-cancel btn-cancel-all btn-dim-action common-btn" (click)="cancel()">
+                <img src="assets/images/dim-cancel-icon.svg" alt="" />
+                <span>Cancel</span>
+            </button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</footer>
+
+<div id="generate-order" class="item-supplier-SOB box-loaded-data box-modal-common" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-child-name">
+  <div class="box-header">
+    <div class="row">
+      <div class="col-xl-10 col-lg-10">
+        <div class="title-import text-left">
+        Generate Order
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-2">
+        <div class="text-right">
+          <button type="button" class="btn-close-import common-btn" (click)="closeGenerateOrder()">
+            <img src="assets/images/cancel-btn-icon.svg" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="add-document">
+      <div class="row">
+        <div class="col-lg-12 content-center-alert text-center">
+          <!-- <label class="labelCode">Select Scenario</label> -->
+          Are you sure want to generate Order?
+          <br>
+          <button type="button" class="btn-pwd-confirm primary-btn common-btn mt-3" style="margin-right: 10px;"
+            (click)="orderGeneration()">
+            <img src="assets/images/save-btn-icon.svg" class="margin-right-6 " />
+            Confirm Order
+          </button>
+          <button type="button" class="btn-pwd-cancel secondary-btn common-btn" (click)="closeGenerateOrder()">
+            <img src="assets/images/cancel-btn-icon.svg" class="margin-right-5" />
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

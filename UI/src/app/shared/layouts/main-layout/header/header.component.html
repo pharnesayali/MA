@@ -1,0 +1,190 @@
+<!--header start here-->
+<!-- <header class="main-header">
+  <div class="header-top">
+    <div class="row margin-left-0 margin-right-0">
+      <div class="col-xl-4 col-lg-4 padding-left-10">
+        <div class="left-title">ADVANCED<span>FORECASTING</span></div>
+      </div>
+      <div class="col-xl-8 col-lg-8 padding-right-0">
+        <div class="right-float">
+          <div class="right-float logo-right">
+            <img src="assets/images/foresee-logo.png" alt="fore-logo" class="image-100" />
+          </div>
+          <div class="right-float profile-login">
+            <div class="left-float margin-right-10 profile-name">John Wick</div>
+            <div class="left-float">
+              <button type="button" class="btn-sign-out common-btn">
+                <img [routerLink]="['/']" title="Logout" src="assets/images/sign-out-icon.svg" />
+              </button>
+            </div>
+          </div>
+          <div class="right-float notification-bell">
+            <img src="assets/images/bell-notification.svg" title="Noticification" />
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header> -->
+
+<ngx-spinner bdOpacity="0.9" bdColor="rgba(51,51,51,0.91)" size="default" color="#fff" type="ball-fussion"
+  [fullScreen]="true">
+  <p style="color: white;">Loading...</p>
+</ngx-spinner>
+<!-- <header class="main-header">
+  <div class="header-top" [ngStyle]="{'background':topHeaderColor}">
+    <div class="row margin-left-0 margin-right-0">
+      <div class="col-xl-4 col-lg-4 padding-left-10">
+        <div class="left-title" [ngStyle]="{'color':topHeaderAdvancedColor}">
+          ADVANCED<span [ngStyle]="{'color':topHeaderForecastingColor}"
+            >FORECASTING</span
+          >
+        </div>
+      </div>
+      <div class="col-xl-8 col-lg-8 padding-right-0">
+        <div class="right-float">
+          <div class="right-float logo-header-right">
+            <img
+              src="assets/images/foresee-logo-1.png"
+              alt="fore-logo"
+              class="image-100"
+            />
+          </div>
+          <div class="right-float profile-login">
+            <div
+              class="left-float margin-right-10 profile-name"
+              [ngStyle]="{'color':userNameColor}"
+            >
+              {{currentUser.first_name}} {{currentUser.last_name}}
+            </div>
+            <div class="left-float">
+              <button
+                type="button"
+                class="btn-sign-out common-btn"
+                (click)="logOut()"
+              >
+                <i
+                  class="fas fa-power-off"
+                  [ngStyle]="{'color':logoutIconColor}"
+                ></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header> -->
+<!--header end here-->
+
+<!--New Header Start-->
+<header class="fixed-header main-header">
+  <div class="header-top" [ngStyle]="{'background':topHeaderColor}">
+    <div class="row margin-left-0 margin-right-0">
+      <div class="col-xl-6 col-lg-6 padding-left-0">
+        <div class="left-float logo-header-right">
+          <img style="height:40px;" src="assets/images/companyLogo.png" alt="fore-logo" style="height:33px;" />
+
+        </div>
+        <div style="margin-top: 10px;">
+          <span class="material-text">Material Automation</span>
+        </div>
+        <!-- <div class="left-title" [ngStyle]="{'color':topHeaderAdvancedColor}">
+          ADVANCED<span
+            class="padding-left-5"
+            [ngStyle]="{'color':topHeaderForecastingColor}"
+            >FORECASTING</span
+          >
+        </div> -->
+      </div>
+      <div class="col-xl-6 col-lg-6 padding-right-0">
+        <div class="right-float">
+
+          <div class="right-float profile-login">
+            <div class="left-float margin-right-10 profile-name" [ngStyle]="{'color':userNameColor}">
+              Welcome {{currentUser.FirstName}} {{currentUser.LastName}}
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a [popover]="popTemplate" triggers="mouseenter:mouseleave" container="body" placement="bottom">
+                <i class="fa-solid fa-circle-user" style="font-size: 20px; color: rgb(108, 105, 105);" aria-hidden="true"></i>
+              </a>
+
+            
+            </div>
+            <!-- <div class="col-lg-1 pl-1">
+              <div class="pl-0">
+                <a [popover]="popTemplate" triggers="mouseenter:mouseleave" container="body" placement="bottom">
+                  <i class="fas fa-info-circle icon-color" ></i>
+                </a>
+              </div>
+            </div> -->
+            <div class="left-float">
+              <button type="button" class="btn-sign-out common-btn" title="Logout" (click)="logOut()">
+                <i class="fas fa-power-off" [ngStyle]="{'color':logoutIconColor}"></i>
+             
+              </button>
+            </div>
+          </div>
+          <!-- <div class="right-float notification-bell">
+            <img src="assets/images/bell-notification.svg" />
+          </div> -->
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+<!--New Header End-->
+
+<ng-template #popTemplate>
+  <div style="font-size: 13px; font-family: 'roboto';">
+    Name : &nbsp; {{currentUser.FirstName}} {{currentUser.LastName}}
+    <br>
+    Email : &nbsp; {{currentUser.Email}}
+    <!-- Phone :{{userPhoneNo}} -->
+    <br>
+    Role : &nbsp; {{currentUser.RoleCode}}
+    <!-- Department :{{currentUser.department_name}} -->
+
+
+  </div>
+  <!-- <div class="col-xl-12 col-lg-12 row padding-0">
+    <div class="col-xl-4 col-lg-4 padding-right-0">
+      <div class="padding-head-content">
+        <div class="program-console-popover-header">Project Manager</div>
+        <div class="program-console-popover-content headerPopover">
+        
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 padding-right-0">
+      <div class="padding-head-content">
+        <div class="program-console-popover-header"> Name</div>
+        <div class="program-console-popover-content headerPopover">
+    
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-2 col-lg-2">
+      <div class="padding-head-content">
+        <div class="program-console-popover-header">Status</div>
+        <div class="program-console-popover-content relative-position"
+         ></div>
+      </div>
+    </div>
+    <div class="col-xl-2 col-lg-2">
+      <div class="padding-head-content">
+        <div class="program-console-popover-header">In Service</div>
+        <div class="program-console-popover-content">
+
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div> -->
+</ng-template>
+

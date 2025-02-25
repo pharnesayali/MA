@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 15 15">
+  <defs>
+    <clipPath id="clip-Close_15x15_">
+      <rect width="15" height="15"/>
+    </clipPath>
+  </defs>
+  <g id="Close_15x15_" data-name="Close(15x15)" clip-path="url(#clip-Close_15x15_)">
+    <g id="Close" transform="translate(-239 -396)">
+      <g id="close_1_" data-name="close (1)" transform="translate(239.499 396.499)">
+        <path id="Path_2224" data-name="Path 2224" d="M8.239,7l5.507-5.507A.875.875,0,1,0,12.508.258L7,5.763,1.5.258A.875.875,0,1,0,.257,1.495L5.763,7,.257,12.508A.876.876,0,0,0,1.5,13.747L7,8.24l5.507,5.507a.876.876,0,0,0,1.238-1.238Z" transform="translate(0)" fill="#fff" stroke="#fff" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

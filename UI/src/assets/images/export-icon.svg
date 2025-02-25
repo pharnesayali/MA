@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-Export">
+      <rect width="20" height="20"/>
+    </clipPath>
+  </defs>
+  <g id="Export" clip-path="url(#clip-Export)">
+    <g id="import_2_" data-name="import (2)" transform="translate(0.8 1.083)">
+      <path id="Path_2329" data-name="Path 2329" d="M14.736,16.464H11.73v1.747h3.006c.894,0,1.588.447,1.588.832v7.746c0,.385-.694.832-1.588.832H3.372c-.894,0-1.588-.447-1.588-.832V19.043c0-.385.694-.832,1.588-.832H6.378V16.465H3.372C1.481,16.465,0,17.6,0,19.043v7.745c0,1.446,1.481,2.578,3.372,2.578H14.736c1.89,0,3.372-1.133,3.372-2.578V19.043C18.108,17.6,16.627,16.464,14.736,16.464Z" transform="translate(0 -10.65)" fill="#214578" stroke="#214578" stroke-width="0.5"/>
+      <path id="Path_2330" data-name="Path 2330" d="M25.07,4.754a.927.927,0,0,1-.658-.273L23.248,3.317V12.78a.93.93,0,1,1-1.86,0V3.254L20.16,4.481a.93.93,0,1,1-1.315-1.315L21.622.389a.927.927,0,0,1,.657-.272h.014a.925.925,0,0,1,.657.272l2.777,2.777a.93.93,0,0,1-.658,1.588Z" transform="translate(-13.203 -1)" fill="#214578" stroke="#214578" stroke-width="0.5"/>
+    </g>
+  </g>
+</svg>

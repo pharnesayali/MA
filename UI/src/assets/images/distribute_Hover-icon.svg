@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-Distribute_Hover">
+      <rect width="20" height="20"/>
+    </clipPath>
+  </defs>
+  <g id="Distribute_Hover" clip-path="url(#clip-Distribute_Hover)">
+    <g id="box" transform="translate(-8.744 -8.659)">
+      <path id="Path_2339" data-name="Path 2339" d="M327.164,162.973l-5.7-3.461-2.942,1.527,6.235,3.535Zm0,0" transform="translate(-298.421 -149.853)" fill="#fff"/>
+      <path id="Path_2340" data-name="Path 2340" d="M214.525,196.779l-6.418-3.568-6.4,3.568,6.4,3.546Zm0,0" transform="translate(-189.301 -181.406)" fill="#fff"/>
+      <path id="Path_2341" data-name="Path 2341" d="M324.717,259.516l-6.236,3.514,2.946,1.547L324.5,262.7l2.623-1.586Zm0,0" transform="translate(-298.384 -243.376)" fill="#fff"/>
+      <path id="Path_2342" data-name="Path 2342" d="M198.964,329.438l-3.315,1.742a.56.56,0,0,1-.551-.017l-2.423-1.476v2.875l6.289,3.642Zm0,0" transform="translate(-180.783 -308.735)" fill="#fff"/>
+      <path id="Path_2343" data-name="Path 2343" d="M312.5,331.243a.563.563,0,0,1-.259-.064l-3.315-1.742v6.768l6.289-3.645V329.67l-2.436,1.492a.52.52,0,0,1-.279.081Zm0,0" transform="translate(-289.493 -308.735)" fill="#fff"/>
+      <path id="Path_2344" data-name="Path 2344" d="M154.776,161.039l-2.944-1.528-5.7,3.46,2.431,1.6Zm0,0" transform="translate(-137.261 -149.853)" fill="#fff"/>
+      <path id="Path_2345" data-name="Path 2345" d="M154.8,263.025l-6.214-3.513-2.431,1.6,2.618,1.583,3.079,1.876Zm0,0" transform="translate(-137.408 -243.372)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

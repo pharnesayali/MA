@@ -1,0 +1,14 @@
+
+<div class="table-row-actions">
+<div class="switch-toggle-status-main" style="float: left;" [title]="user.isActive === true ? 'Active' : 'Deactive'">
+  <label class="image-toggle-switch margin-right-5">
+    <input type="checkbox" name="userActive" #userActive="ngModel" [(ngModel)]="user.isActive"
+      (change)="updateUserStatus(user.isActive)" [checked]="user.isActive === true" />
+    <span class="image-toggle-slider round"></span>
+  </label>
+</div>
+<button type="button" [ngClass]="{'disabled': user.isActive === false}" [disabled]="user.isActive === false"
+  class="btn-edit btn-action-row common-btn margin-right-5" title="Edit" (click)="openEditUser(user)">
+  <img src="assets/images/grid-edit-icon.svg" />
+</button>
+</div>

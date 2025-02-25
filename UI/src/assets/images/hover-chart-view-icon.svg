@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-Graph_View_Hover_Icon">
+      <rect width="20" height="20"/>
+    </clipPath>
+  </defs>
+  <g id="Graph_View_Hover_Icon" clip-path="url(#clip-Graph_View_Hover_Icon)">
+    <rect id="Rectangle_12" data-name="Rectangle 12" width="20" height="20" fill="none"/>
+    <g id="Group_2" data-name="Group 2" transform="translate(-296 -351)">
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="20" height="20" transform="translate(296 351)" fill="none"/>
+      <path id="path" d="M262.7,23V13h5V23Zm7.5,0V3h5V23Zm7.5-13.75h5V23h-5Z" transform="translate(33.3 348)" fill="#232e3e"/>
+    </g>
+  </g>
+</svg>

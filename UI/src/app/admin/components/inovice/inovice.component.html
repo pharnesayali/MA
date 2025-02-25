@@ -1,0 +1,306 @@
+<ngx-spinner bdOpacity="0.9" bdColor="rgba(51,51,51,0.91)" size="default" color="#fff" type="ball-fussion"
+    [fullScreen]="true">
+    <p style="color: white">Loading...</p>
+</ngx-spinner>
+<app-notifier></app-notifier>
+<div class="header-bottom-admin">
+    <div class="row margin-left-0 margin-right-0 justify-content-between">
+        <div class="col-xl-3 col-lg-3 padding-left-10">
+            <app-breadcrumb></app-breadcrumb>
+        </div>
+        <div class="col-xl-9 col-lg-9">
+            <div class="row justify-content-end align-items-center">
+                <div class="col-lg-3 col-xl-3" style="margin-top: -3px;">
+                </div>
+                <div class="px-3" style="margin-top: 1px;">
+
+                    <button type="button" class="btn-import hover-btn-icon btn-blue-header common-btn"
+                        (click)="showImport()">
+                        <img id="icon" src="assets/images/import-icon.svg" class="normal-icon" alt="import" />
+                        <img id="icon" src="assets/images/hover-import-icon.svg" class="hover-icon" alt="import" />
+                        &nbsp;
+                        <span>Import</span>
+                    </button>
+                    <div class="box-import box-modal-common">
+                        <div class="box-header">
+                            <div class="row">
+                                <div class="col-xl-10 col-lg-10">
+                                    <div class="title-import">Import Invoice File</div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2">
+                                    <div class="text-right">
+                                        <button type="button" class="btn-close-import common-btn"
+                                            (click)="hideImport()">
+                                            <i class="fas fa-times text-white"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-container">
+                            <div class="form-group form-group-import" style="margin-bottom: 0px !important;">
+                                <label>Browse file from local drive</label>
+                                <form #uploadForm="ngForm">
+                                    <div class="row margin-left-0 margin-right-0">
+                                        <div class="col-xl-9 col-lg-9 padding-left-0"
+                                            [ngClass]="{ import_paceholder: !isFileSelected }">
+                                            <input type="text" class="form-control import-upload-input" name="filename"
+                                                #fileName="ngModel" [(ngModel)]="filename1" [ngStyle]="{
+                  background:
+                    isFileSelected === true ? '#d2dae5' : '#ffe1e1 '
+                }" [placeholder]="
+                  !isFileSelected ? 'Please select the file' : 'Please select only .xlsx file'
+                " disabled />
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 padding-left-0 upload-btn-wrapper">
+                                            <button type="button" class="primary-btn btn-upload-file common-btn"
+                                                style="background:#726f6f ;">
+                                                <i class="fas fa-folder-open mr-1 fa-lg"></i>
+                                                Browse
+                                            </button>
+                                            <input type="file" name="myfile" #myfile (change)="fileChange($event)"
+                                                title="{{filename1}}" />
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <br />
+                                    <div class="row margin-left-0 margin-right-0">
+                                        <div class="col-xl-9 col-lg-9 padding-left-0 upload-btn-wrapper">
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3" style="padding-left:0px !important">
+                                            <button type="button" class="primary-btn btn-upload-file common-btn"
+                                                style="padding-left:0px !important" (click)="UploadFile()"
+                                                [ngClass]="{disabled: !isxlsx}" [disabled]="!isxlsx"
+                                                [title]="!isxlsx ? 'Please upload only .xlsx file' : ''">
+                                                <img src="assets/images/upload-file-icon.svg" class="margin-right-5" />
+                                                Upload File
+                                            </button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="note-line">
+                                        Note:
+                                        <a href="assets/EmptyTemplet/Invoice_template_data.xlsx"
+                                            download="Invoice_template_data.xlsx" class="pointer text-info">Click
+                                            here</a>
+                                        to download template
+                                    </div>
+                                </form>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="form-group form-group-import" style="margin-bottom: 0 !important;">
+                                    <label style="margin-left: 14px; font-size:16px;">
+                                        Import Summary
+                                    </label>
+                                </div>
+                                <ag-grid-angular
+                                    style="overflow: hidden; flex-grow: 1; height: calc(100vh - 400px); margin-left: 14px !important; margin-right: 10px !important;"
+                                    id="invoiceImportDocx" class="ag-theme-balham  m-0  w-100"
+                                    [columnDefs]="importColumnDef" [defaultColDef]="importdefaultColDef"
+                                    [animateRows]="true" [headerHeight]="headerHeight" [enableRangeSelection]="true"
+                                    [rowSelection]="rowSelection" (gridReady)="onImportGridReady($event)"
+                                    [suppressContextMenu]="true" [rowData]="invoiceImport" [floatingFilter]="true"
+                                    [frameworkComponents]="importFrameworkComponents">
+                                </ag-grid-angular>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="justify-content-end">
+                    <button type="button"
+                        class="btn-create-user hover-btn-icon btn-blue-header common-btn margin-right-15"
+                        (click)="changeDate()">
+                        <i class="	far fa-calendar-alt" ng-reflect-ng-style="[object Object]"
+                            style="color: #ff5050; font-size: 15px;"></i>
+                        <span class="ml-1 ">Change Date</span>
+                    </button>
+                    <button type="btn" style="border: 0; background-color: #ff5050;font-size: 20px;"
+                        (click)="getData()">
+                        <i class="fas fa-info-circle icon-color" ng-reflect-ng-style="[object Object]"
+                            style="color: rgb(255, 255, 255); font-size: 18px;"></i>
+                    </button> &nbsp;
+                </div>
+            </div>
+        </div>
+
+        <!--  -->
+
+
+    </div>
+</div>
+
+<div style="text-align: right; margin-right:10px; margin-top:3px; color:#ff5050; font-size: 13px; font-weight: bold;">
+    <!-- <span style="text-align: left;"> -->
+    Last Updated Date :{{updatedDate | date: "dd/MM/yyyy HH:mm"}}
+    <!-- </span> -->
+</div>
+<hr>
+
+<div id="last-updated-inovice-data" class="invoice box-loaded-data box-modal-common dataSummary" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-child-name">
+    <div class="box-header">
+        <div class="row">
+            <div class="col-xl-10 col-lg-10">
+                <div class="title-import text-left">
+                    Data Update Summary
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-2">
+                <div class="text-right">
+                    <button type="button" class="btn-close-import common-btn" (click)="closeModal()">
+                        <img src="assets/images/cancel-btn-icon.svg" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="sticky-header">
+                <th class="text-align-left">File Type</th>
+                <th class="text-align-left">Last Uploaded Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let file of fileUploadedList ; let i = index;">
+                <td>{{file.FileType}}</td>
+                <td>{{file.Date | date: 'dd/MM/yyyy hh:mm'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div style="margin-top:10px;">
+    <ag-grid-angular style="overflow: hidden; height: calc(100vh - 154px);" id="invoiceGrid"
+        class="ag-theme-balham  m-0  w-100" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
+        [context]="context" [animateRows]="true" [headerHeight]="headerHeight" [enableRangeSelection]="true"
+        [rowSelection]="rowSelection" (gridReady)="onGridReady($event)" [suppressContextMenu]="true"
+        [rowData]="invoiceData" [frameworkComponents]="frameworkComponents" [pagination]="true"
+        [paginationPageSize]="paginationPageSize" [serverSideStoreType]="serverSideStoreType"
+        [cacheBlockSize]="cacheBlockSize" [rowBuffer]="rowBuffer" [floatingFilter]="true">
+    </ag-grid-angular>
+    <!-- 
+         [rowModelType]="rowModelType" 
+    -->
+</div>
+
+<!-- <footer style="margin-top: 10px;">
+    <div class="fixed-blue-strip-vendor">
+        <div class="right-float">
+            <button type="button" class="btn-user-update primary-btn common-btn margin-right-5" (click)="apply()">
+                <img src="assets/images/accept-icon.svg" alt="" />
+                <span>Apply </span>
+            </button>
+            <button type="button" class="btn-cancel btn-cancel-all btn-dim-action common-btn" (click)="cancel()">
+                <img src="assets/images/dim-cancel-icon.svg" alt="" />
+                <span>Cancel</span>
+            </button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</footer> -->
+
+<div id="change-date" style="width: 60%; left:-15% !important" class="change-date box-loaded-data box-modal-common"
+    tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+    <div class="box-header">
+        <div class="row">
+            <div class="col-xl-10 col-lg-10">
+                <div class="title-import text-left">
+                    Change Date
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-2">
+                <div class="text-right">
+                    <button type="button" class="btn-close-import common-btn" (click)="closeChangeDateModal()">
+                        <img src="assets/images/cancel-btn-icon.svg" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-2 mb-2 ">
+        <!-- <label for="Inovice"> Invoice No:</label>&nbsp;
+        <input type="number" placeholder="Enter Inovice Number" [(ngModel)]="invoiceNo" (blur)="selectedInvoiceData()"> -->
+        <div class="mt-3 mb-2 text-center">
+            <label style="font-size: 13px; font-weight:bold " for="Inovice"> Invoice No:</label>&nbsp;
+            <input type="text" placeholder="Enter Inovice Number" [(ngModel)]="invoicenumber" class="p-1"
+                style="border-right: 0;width: 35%;" required>
+            <button style="border-left: 0; border-color: gray; background-color: white;" class="p-1"
+                (click)="getInvoiceDate()">
+                <i class="fas fa-search" style="font-size: 15px; margin-left: 5px;"></i>
+            </button>
+        </div>
+        <hr>
+
+        <div style="margin-top:10px;">
+            <div class="container">
+                <div class="row">
+                    <div class="invoice_date col-lg-4 col-md-4">
+                        <label style="font-size: 13px; font-weight:bold " for="">Invioce Date :</label><br>
+                        <input style="background-color: #fff;"  [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                            class="form-control colorCode" Year="ngModel" [(ngModel)]="invoiceDate" disabled
+                            placeholder="Invoice Date" />
+                    </div>
+                    <div class="expected_arrival_at_facto col-lg-4 col-md-4">
+                        <label style="font-size: 13px; font-weight:bold " for="">PO Number :</label><br>
+                        <input style="background-color: #fff;" class="form-control colorCode" placeholder="PO Number"
+                            [(ngModel)]="poNumber" type="number" disabled />
+                    </div>
+                    <div class="expected_arrival_at_facto col-lg-4 col-md-4">
+                        <label style="font-size: 13px; font-weight:bold " for="">Bill Number :</label><br>
+                        <input style="background-color: #fff;" class="form-control colorCode" placeholder="Bill Number"
+                            [(ngModel)]="billNumber" type="number" disabled />
+                    </div>
+
+                    <hr>
+                    <div class="expected_arrival_at_facto mt-3 col-lg-4 col-md-4">
+                        <label style="font-size: 13px; font-weight:bold " for="">Expected Arrival At Factory
+                            :</label><br>
+                        <input style="background-color: #fff;" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                            placeholder="Select Date" class="form-control colorCode" Year="ngModel"
+                            [(ngModel)]="expectedArrivalAtFactory" bsDatepicker placement="top"
+                            (onShown)="onOpenYearCalendar($event)" placeholder="Select Date"
+                            (blur)="changeexpectedArrivalAtFactory()"  />
+                    </div>
+
+                    <div class="expected_arrival_at_Port mt-3 col-lg-4 col-md-4">
+                        <label style="font-size: 13px; font-weight:bold " for="">Expected Arrival At Port :</label><br>
+                        <input style="background-color: #fff;" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                            placeholder="Select Date" class="form-control colorCode" Year="ngModel"
+                            [(ngModel)]="expectedArrivalAtPort" bsDatepicker placement="top"
+                            (onShown)="onOpenYearCalendar($event)" placeholder="Select Date"
+                            (blur)="changeexpectedArrivalAtPort()" />
+                    </div>
+                    <div class="expected_delivery_dat mt-3 col-lg-4 col-md-4 ">
+                        <label style="font-size: 13px; font-weight:bold " for="">Expected Delivery Date :</label><br>
+                        <input style="background-color: #fff;" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                            placeholder="Select Date" class="form-control colorCode" Year="ngModel"
+                            [(ngModel)]="expectedDeliveryDate" bsDatepicker placement="top"
+                            (onShown)="onOpenYearCalendar($event)" placeholder="Select Date"
+                            (blur)="changeDeliveryDate()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer style="margin-top: 10px;">
+            <div class="fixed-blue-strip-vendor">
+                <div class="right-float">
+                    <button type="button" class="btn-user-update primary-btn common-btn margin-right-5"
+                        (click)="apply()">
+                        <img src="assets/images/accept-icon.svg" alt="" />
+                        <span>Apply </span>
+                    </button>
+                    <button type="button" class="btn-cancel btn-cancel-all btn-dim-action common-btn"
+                        (click)="closeChangeDateModal()">
+                        <img src="assets/images/dim-cancel-icon.svg" alt="" />
+                        <span>Cancel</span>
+                    </button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </footer>
+
+    </div>

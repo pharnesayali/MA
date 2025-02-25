@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="comment" transform="translate(-1 2.332)">
+    <rect id="Rectangle_9" data-name="Rectangle 9" width="20" height="20" transform="translate(1 -2.332)" fill="none"/>
+    <g id="Group_3" data-name="Group 3" transform="translate(1)">
+      <path id="Path_2270" data-name="Path 2270" d="M17.251-1.332H2.75A2.752,2.752,0,0,0,0,1.418v8.873a2.752,2.752,0,0,0,2.741,2.746v4.027l5.787-4.027h8.723A2.753,2.753,0,0,0,20,10.291V1.418a2.752,2.752,0,0,0-2.75-2.75Zm1.578,11.623a1.58,1.58,0,0,1-1.578,1.578H8.16L3.912,14.826V11.87H2.75a1.58,1.58,0,0,1-1.578-1.578V1.418A1.579,1.579,0,0,1,2.75-.16h14.5a1.579,1.579,0,0,1,1.578,1.578Zm0,0" transform="translate(0 0)" fill="#fff"/>
+      <path id="Path_2271" data-name="Path 2271" d="M171.293,131.172h8.365v1.055h-8.365Zm0,0" transform="translate(-165.475 -128.335)" fill="#fff"/>
+      <path id="Path_2272" data-name="Path 2272" d="M171.293,211.172h8.365v1.055h-8.365Zm0,0" transform="translate(-165.475 -205.818)" fill="#fff"/>
+      <path id="Path_2273" data-name="Path 2273" d="M171.293,291.172h8.365v1.055h-8.365Zm0,0" transform="translate(-165.475 -283.301)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,76 @@
+  <ngx-spinner
+  bdOpacity="0.9"
+  bdColor="rgba(51,51,51,0.91)"
+  size="default"
+  color="#fff"
+  type="ball-fussion"
+  [fullScreen]="true"
+>
+  <p style="color: white;">Loading...</p>
+</ngx-spinner>
+
+<app-notifier></app-notifier>
+<ng-template #popTemplate>
+  <div [innerHtml]="html"></div>
+</ng-template>
+<div class="container shadow " style="width: 40%; margin-top:15%; background-color:gainsboro;">
+  <!-- <img style="height:40px; margin-left: 25px;" src="assets/images/companyLogo.png" alt="fore-logo"  />
+<div >
+  <span style=" margin-top:100px; font-size: 15px ;margin-left: 90px; color:red">
+    Material Automation
+  </span>
+</div> -->
+<div class="login-form ">
+  <div class="inner-login-form">
+    <!-- <div class="logo-main-login">
+
+    </div> -->
+    <div class="logo-login-instruction">
+      <h3 style="font-weight: bolder; padding-top: 20px;">Sign in</h3>
+      <p class="text-secondary">Please Enter Your Login Name To Login</p>
+    </div>
+    <div class="login-fields" >
+      <form
+        novalidate
+        autocomplete="off"
+      >
+        <div class="form-group margin-bottom-25">
+          <label for="UserId">User Id :</label>
+          <input
+            type="text"
+            class="form-control custom-login-input"
+            placeholder="Enter Employee ID"
+            required
+            [(ngModel)]="user.userName"
+            name="Username"
+            #Username="ngModel"
+            [pattern]="constants.USERNAME"
+         
+          />
+          <div
+            *ngIf="
+              Username.invalid &&
+              (Username.dirty || Username.touched )
+            "
+            class="mb-4 text-danger"
+          >
+            <span [hidden]="!Username?.errors.required">Enter Employee ID</span>
+          </div>
+        </div>
+        
+        <div>
+          <button type="submit" (click)="signIn()" class="btn-sign-in common-btn mb-4">
+            Sign in <img src="assets/images/sign-in-arrow.svg" />
+          </button>
+          
+        </div>
+      </form>
+    </div>
+ 
+  </div>
+</div>
+
+
+</div>
+<div class="clearfix"></div>
+

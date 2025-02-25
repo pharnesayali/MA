@@ -1,0 +1,117 @@
+<!-- style="overflow: hidden; flex-grow: 1; height: calc(100vh - 90px);"-->
+<ngx-spinner bdOpacity="0.9" bdColor="rgba(51,51,51,0.91)" size="default" color="#fff" type="ball-fussion"
+    [fullScreen]="true">
+    <p style="color: white">Loading...</p>
+</ngx-spinner>
+<app-notifier></app-notifier>
+<div class="header-bottom-admin">
+    <div class="row margin-left-0 margin-right-0 justify-content-between">
+        <div class="col-xl-3 col-lg-3 padding-left-10">
+            <app-breadcrumb></app-breadcrumb>
+        </div>
+        <!-- <div class="col-xl-6 col-lg-5">
+    <div class="form-group margin-bottom-0 search-main-header"></div>
+  </div> -->
+        <div class="col-xl-9 col-lg-9">
+            <div class="row justify-content-end align-items-center">
+                <div class="col-lg-3 col-xl-3" style="margin-top: -3px;">
+                    <!-- <button
+        type="button"
+        class="btn-create-user hover-btn-icon btn-blue-header common-btn margin-right-15"
+        (click)="openPermisssionWindow(templateProjectPermissionLayout)"
+      >
+        <span>BULK</span>
+      </button>
+      <button type="button" class="btn-create-user hover-btn-icon btn-blue-header common-btn margin-right-15"
+        (click)="openPermisssionWindow(templateProjectUnassignPermissionLayout)">
+        <span>BULK2</span>
+      </button> -->
+                    
+
+                </div>
+                <!-- <div class="px-3" style="margin-top: 1px;">
+                    <button type="button" class="btn-import hover-btn-icon btn-blue-header common-btn"
+                        (click)="showImport()">
+                        <img id="icon" src="assets/images/import-icon.svg" class="normal-icon" alt="import" />
+                        <img id="icon" src="assets/images/hover-import-icon.svg" class="hover-icon" alt="import" />
+                        &nbsp;
+                        <span>Import</span>
+                    </button>
+                    <div class="box-import box-modal-common">
+                        <div class="box-header">
+                            <div class="row">
+                                <div class="col-xl-10 col-lg-10">
+                                    <div class="title-import">Import Plant Master File</div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2">
+                                    <div class="text-right">
+                                        <button type="button" class="btn-close-import common-btn"
+                                            (click)="hideImport()">
+                                            <i class="fas fa-times text-white"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-container">
+                            <div class="form-group form-group-import">
+                                <label>Browse file from local drive</label>
+                                <form #uploadForm="ngForm">
+                                    <div class="row margin-left-0 margin-right-0">
+                                        <div class="col-xl-12 col-lg-12 padding-left-0"
+                                            [ngClass]="{ import_paceholder: !isFileSelected }">
+                                            <input type="text" class="form-control import-upload-input"
+                                                name="filename" #fileName="ngModel" [(ngModel)]="filename1"
+                                                [ngStyle]="{
+                      background:
+                        isFileSelected === true ? '#d2dae5' : '#ffe1e1 '
+                    }" [placeholder]="
+                      !isFileSelected ? 'Please select the file' : 'Please select only .csv file'
+                    " disabled />
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <br />
+                                    <div class="row margin-left-0 margin-right-0">
+                                        <div class="col-xl-6 col-lg-6 padding-left-0 upload-btn-wrapper">
+                                            <button type="button" class="primary-btn btn-upload-file common-btn">
+                                                <i class="fas fa-folder-open mr-1 fa-lg"></i>
+                                                Browse
+                                            </button>
+                                            <input type="file" name="myfile" #myfile (change)="fileChange($event)"
+                                                accept=".csv" title="{{filename1}}" />
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6">
+                                            <button type="button" class="primary-btn btn-upload-file common-btn"
+                                                (click)="UploadFile()" [ngClass]="{disabled: !isCSV}"
+                                                [disabled]="!isCSV"
+                                                [title]="!isCSV ? 'Please upload only .csv file' : ''">
+                                                <img src="assets/images/upload-file-icon.svg"
+                                                    class="margin-right-5" />
+                                                Upload File
+                                            </button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+          
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div style="margin-top:10px; margin-left: 5px;">
+    <ag-grid-angular style="overflow: hidden; flex-grow: 1; height: calc(100vh - 103px); " id="mrpGrid"
+        class="ag-theme-balham  m-0  w-100" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
+        [context]="context" [animateRows]="true" [headerHeight]="headerHeight" [enableRangeSelection]="true"
+        [rowSelection]="rowSelection" (gridReady)="onGridReady($event)" [suppressContextMenu]="true" [rowData]="MrpData"
+        [floatingFilter]="true" [rowGroupPanelShow]="rowGroupPanelShow" >
+    </ag-grid-angular>
+</div>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 15 15">
+  <defs>
+    <clipPath id="clip-Ecllipse_Menu">
+      <rect width="15" height="15"/>
+    </clipPath>
+  </defs>
+  <g id="Ecllipse_Menu" clip-path="url(#clip-Ecllipse_Menu)">
+    <g id="menu_3_" data-name="menu (3)" transform="translate(-186)">
+      <g id="Group_2867" data-name="Group 2867" transform="translate(192)">
+        <g id="Group_2866" data-name="Group 2866">
+          <ellipse id="Ellipse_31" data-name="Ellipse 31" cx="1.875" cy="1.906" rx="1.875" ry="1.906" transform="translate(0 5.594)" fill="#214578"/>
+          <ellipse id="Ellipse_32" data-name="Ellipse 32" cx="1.875" cy="1.906" rx="1.875" ry="1.906" transform="translate(0 11.188)" fill="#214578"/>
+          <ellipse id="Ellipse_33" data-name="Ellipse 33" cx="1.875" cy="1.906" rx="1.875" ry="1.906" fill="#214578"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

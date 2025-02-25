@@ -1,0 +1,247 @@
+<ngx-spinner bdOpacity="0.9" bdColor="rgba(51,51,51,0.91)" size="default" color="#fff" type="ball-fussion"
+  [fullScreen]="true">
+  <p style="color: white">Loading...</p>
+</ngx-spinner>
+<app-notifier></app-notifier>
+<div class="header-bottom-admin">
+  <div class="row margin-left-0 margin-right-0 justify-content-between">
+    <div class="col-xl-3 col-lg-3 padding-left-10">
+      <app-breadcrumb></app-breadcrumb>
+    </div>
+    <!-- <div class="col-xl-6 col-lg-5">
+  <div class="form-group margin-bottom-0 search-main-header"></div>
+</div> -->
+    <div class="col-xl-9 col-lg-9">
+      <div class="row justify-content-end align-items-center">
+        <div class="col-lg-3 col-xl-3" style="margin-top: -3px;">
+          <!-- <button
+      type="button"
+      class="btn-create-user hover-btn-icon btn-blue-header common-btn margin-right-15"
+      (click)="openPermisssionWindow(templateProjectPermissionLayout)"
+    >
+      <span>BULK</span>
+    </button>
+    <button type="button" class="btn-create-user hover-btn-icon btn-blue-header common-btn margin-right-15"
+      (click)="openPermisssionWindow(templateProjectUnassignPermissionLayout)">
+      <span>BULK2</span>
+    </button> -->
+
+
+        </div>
+
+        <div class="px-3" style="margin-top: 1px;">
+
+          <button type="button" class="btn-import hover-btn-icon btn-blue-header common-btn" (click)="showImport()">
+            <img id="icon" src="assets/images/import-icon.svg" class="normal-icon" alt="import" />
+            <img id="icon" src="assets/images/hover-import-icon.svg" class="hover-icon" alt="import" />
+            &nbsp;
+            <span>Import</span>
+          </button>
+          <div class="box-import box-modal-common">
+            <div class="box-header">
+              <div class="row">
+                <div class="col-xl-10 col-lg-10">
+                  <div class="title-import">Import Daily Shipment File</div>
+                </div>
+                <div class="col-xl-2 col-lg-2">
+                  <div class="text-right">
+                    <button type="button" class="btn-close-import common-btn" (click)="hideImport()">
+                      <i class="fas fa-times text-white"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="box-container">
+              <div class="form-group form-group-import" style="margin-bottom: 0px !important;">
+                <label>Browse file from local drive</label>
+                <form #uploadForm="ngForm">
+                  <div class="row margin-left-0 margin-right-0">
+                    <div class="col-xl-9 col-lg-9 padding-left-0" [ngClass]="{ import_paceholder: !isFileSelected }">
+                      <input type="text" class="form-control import-upload-input" name="filename" #fileName="ngModel"
+                        [(ngModel)]="filename1" [ngStyle]="{
+                  background:
+                    isFileSelected === true ? '#d2dae5' : '#ffe1e1 '
+                }" [placeholder]="
+                  !isFileSelected ? 'Please select the file' : 'Please select only .xlsx file'
+                " disabled />
+                    </div>
+                    <div class="col-xl-3 col-lg-3 padding-left-0 upload-btn-wrapper">
+                      <button type="button" class="primary-btn btn-upload-file common-btn" style="background:#726f6f ;">
+                        <i class="fas fa-folder-open mr-1 fa-lg"></i>
+                        Browse
+                      </button>
+                      <input type="file" name="myfile" #myfile (change)="fileChange($event)" title="{{filename1}}" />
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <br />
+                  <div class="row margin-left-0 margin-right-0">
+                    <div class="col-xl-9 col-lg-9 padding-left-0 upload-btn-wrapper">
+                      <!-- <button type="button" class="primary-btn btn-upload-file common-btn">
+                                            <i class="fas fa-folder-open mr-1 fa-lg"></i>
+                                            Browse
+                                        </button>
+                                        <input type="file" name="myfile" #myfile (change)="fileChange($event)"
+                                            accept=".csv" title="{{filename1}}" /> -->
+                      <!-- <div class="note-line">
+                                                Note:
+                                                <a class="pointer text-info" (click)="DownloadTemplate()">Click here</a>
+                                                to download template
+                                            </div> -->
+                    </div>
+                    <div class="col-xl-3 col-lg-3" style="padding-left:0px !important">
+                      <button type="button" class="primary-btn btn-upload-file common-btn"
+                        style="padding-left:0px !important" (click)="UploadFile()" [ngClass]="{disabled: !isxlsx}"
+                        [disabled]="!isxlsx" [title]="!isxlsx ? 'Please upload only .xlsx file' : ''">
+                        <img src="assets/images/upload-file-icon.svg" class="margin-right-5" />
+                        Upload File
+                      </button>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="note-line">
+                    Note:
+                    <a href="assets/EmptyTemplet/Daily_shipment_template.xlsx" download="Daily_shipment_template.xlsx"
+                      class="pointer text-info">Click here</a>
+                    to download template
+                  </div>
+                  <!-- <div class="row margin-left-0 margin-right-0 mt-3">
+                                    <div class="col-xl-8 col-lg-8 padding-left-0">
+                                        <div class="note-line">
+                                            Note:
+                                            <a class="pointer text-info" (click)="DownloadTemplate()">Click here</a>
+                                            to download template
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 padding-left-0 text-right">
+                                        <i class="fas fa-question-circle text-info" [popover]="popTemplate"
+                                            popoverTitle="Import Guidelines" placement="left"
+                                            triggers="mouseenter:mouseleave"></i>
+                                    </div>
+                                </div> -->
+                </form>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="form-group form-group-import" style="margin-bottom: 0 !important;">
+                  <label style="margin-left: 14px; font-size:16px;">
+                    Import Summary
+                  </label>
+                </div>
+                <ag-grid-angular
+                  style="overflow: hidden; flex-grow: 1; height: calc(100vh - 395px); margin-left: 14px !important; margin-right: 10px !important;"
+                  id="itemMasterImportDocx" class="ag-theme-balham  m-0  w-100" [columnDefs]="importColumnDef"
+                  [defaultColDef]="importdefaultColDef" [animateRows]="true" [headerHeight]="headerHeight"
+                  [enableRangeSelection]="true" [rowSelection]="rowSelection" (gridReady)="onImportGridReady($event)"
+                  [suppressContextMenu]="true" [rowData]="importSummaryList" [floatingFilter]="true">
+                </ag-grid-angular>
+              </div>
+            </div>
+
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <button type="btn" style="border: 0; margin-top: 7px; background-color: #ff5050" (click)="getData()">
+          <i class="fas fa-info-circle icon-color" ng-reflect-ng-style="[object Object]"
+            style="color: rgb(255, 255, 255); font-size: 18px;"></i>
+        </button> &nbsp;
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div style="text-align: right; margin-right:10px; margin-top:3px; color:#ff5050;font-size: 13px; font-weight: bold;">
+  Last Updated Date :{{updatedDate | date: "dd/MM/yyyy HH:mm"}}
+</div> -->
+<hr>
+
+<div id="last-updated-item-daily-shipment-data" class="box-loaded-data box-modal-common dataSummary" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-child-name">
+  <div class="box-header">
+    <div class="row">
+      <div class="col-xl-10 col-lg-10">
+        <div class="title-import text-left">
+          Data Update Summary
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-2">
+        <div class="text-right">
+          <button type="button" class="btn-close-import common-btn" (click)="closeModal()">
+            <img src="assets/images/cancel-btn-icon.svg" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr class="sticky-header">
+        <th class="text-align-left">File Type</th>
+        <th class="text-align-left">Last Uploaded Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of fileUploadedList ; let i = index;">
+        <td>{{file.FileType}}</td>
+        <td>{{file.Date | date: 'dd/MM/yyyy hh:mm'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+  <div class="row mt-3">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+      <div class="form-group custom-blue-input  ">
+        <div class="row">
+          <div class="col-4 ">
+            <label
+              style="font-weight: bold !important ; margin-top: 3px; margin-left: 33% !important; font-size: 14px;">
+              From Date : </label>
+          </div>
+          <div class="col-8" style="padding: 0px;"><input style="background-color: #fff; "
+              [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" placeholder="Select Date" class="form-control colorCode"
+              Year="ngModel" [(ngModel)]="fromDate" bsDatepicker (onShown)="onOpenYearCalendar($event)"
+              placeholder="Select Date" /></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+      <div class="form-group custom-blue-input  ">
+        <div class="row">
+          <div class="col-xl-4"><label style="margin-top: 5px; font-size: 14px; margin-left: 48% !important;"> To Date
+              :</label>
+          </div>
+          <div class="col-lg-8" style="padding: 0px;">
+            <input style="background-color: #fff; " [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+              placeholder="Select Date" class="form-control colorCode" Year="ngModel" [(ngModel)]="toDate" bsDatepicker
+              (onShown)="onOpenYearCalendar($event)" placeholder="Select Date" />
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 ">
+      <div>
+        <button type="submit" class="btn-link-action btn-update-company-profile primary-btn common-btn"
+          style="margin-top: 2px;" (click)="apply()">
+          <b>Search</b></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="reset" class="btn-link-action btn-update-company-profile primary-btn common-btn bg-secondary"
+          (click)="reset()">
+          Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Data grid for Consumption Report -->
+
+<div style="margin-top:10px;">
+  <ag-grid-angular style="overflow: hidden; height: calc(100vh - 210px);" id="slowmoving"
+    class="ag-theme-balham  m-0  w-100" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [animateRows]="true"
+    [headerHeight]="headerHeight" (gridReady)="onGridReady($event)" [suppressContextMenu]="true"
+    [rowData]="DailyShipmentList" [suppressDragLeaveHidesColumns]="true" [floatingFilter]="true">
+  </ag-grid-angular>
+</div>

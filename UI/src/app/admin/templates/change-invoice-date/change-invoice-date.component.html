@@ -1,0 +1,23 @@
+<div class="form-group custom-blue-input  ">
+    <input *ngIf="invoiceChange" style="background-color: #fff;" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+        placeholder="Select Date" class="form-control colorCode" Year="ngModel" [(ngModel)]="selectedInovoiceDate"
+        bsDatepicker (bsValueChange)="onDateChange($event,'inovice_Date')" />
+</div>
+
+<!-- <div class="form-group custom-blue-input  " *ngIf="expAtFactory">
+    <input style="background-color: #fff;" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Select Date"
+        class="form-control colorCode" Year1="ngModel" [(ngModel)]="selectedExpAtFactory" bsDatepicker 
+        (bsValueChange)="onDateChange($event)" />
+</div>
+
+<div class="form-group custom-blue-input  "  *ngIf="expDelivery">
+    <input style="background-color: #fff;" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Select Date"
+        class="form-control colorCode" Year2="ngModel" [(ngModel)]="selectedExpDelivery" bsDatepicker
+        (bsValueChange)="onDateChange($event)" />
+</div>
+
+<div class="form-group custom-blue-input  "  *ngIf="expAtPort">
+    <input style="background-color: #fff;" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="Select Date"
+        class="form-control colorCode" Year3="ngModel" [(ngModel)]="selectedExpAtPort" bsDatepicker 
+        (bsValueChange)="onDateChange($event)" />
+</div> -->

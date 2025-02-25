@@ -1,0 +1,84 @@
+<div class="back-drop" *ngIf="src.notifications.length !== 0"></div>
+<div *ngIf="src">
+  <ng-container *ngFor="let notification of src.notifications.reverse()">
+    <div [@notify]="'show'">
+      <ng-container [ngSwitch]="notification.type">
+        <!-- Information Toast Message -->
+        <ng-container *ngSwitchCase="1">
+          <div class="toast toast__blue add-margin">
+            <div class="toast__icon">
+              <i class="fas fa-info toast__svg"></i>
+            </div>
+            <div class="toast__content">
+              <p class="toast__type">Info</p>
+              <p class="toast__message" [innerHTML]="notification.message">
+                <!-- {{ notification.message }}. -->
+              </p>
+            </div>
+            <div class="toast__close">
+              <i class="fas fa-times toast__close" aria-hidden="true" title="close"
+                (click)="src.destroy(notification)"></i>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Success Toast Message -->
+        <ng-container *ngSwitchCase="2">
+          <div class="toast toast__green">
+            <div class="toast__icon">
+              <i class="fa fa-check toast__svg"></i>
+            </div>
+            <div class="toast__content">
+              <p class="toast__type">Success</p>
+              <p class="toast__message" [innerHTML]="notification.message">
+                <!-- {{ notification.message }}. -->
+              </p>
+            </div>
+            <div class="toast__close">
+              <i class="fas fa-times toast__close" aria-hidden="true" title="close"
+                (click)="src.destroy(notification)"></i>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Warning Toast Message -->
+        <ng-container *ngSwitchCase="3">
+          <div class="toast toast__yellow">
+            <div class="toast__icon">
+              <i class="fas fa-exclamation toast__svg"></i>
+            </div>
+            <div class="toast__content">
+              <p class="toast__type">Warning</p>
+              <p class="toast__message" [innerHTML]="notification.message">
+                <!-- {{ notification.message }}. -->
+              </p>
+            </div>
+            <div class="toast__close">
+              <i class="fas fa-times toast__close" aria-hidden="true" title="close"
+                (click)="src.destroy(notification)"></i>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Error Toast Message -->
+        <ng-container *ngSwitchCase="4">
+          <div class="toast toast__red">
+            <div class="toast__icon">
+              <i class="fas fa-exclamation-triangle toast__svg"></i>
+            </div>
+            <div class="toast__content">
+              <p class="toast__type">Error</p>
+              <p class="toast__message" [innerHTML]="notification.message">
+                <!-- {{ notification.message }}. -->
+              </p>
+            </div>
+            <div class="toast__close">
+              <i class="fas fa-times toast__close" aria-hidden="true" title="close"
+                (click)="src.destroy(notification)"></i>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>
